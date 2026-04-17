@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Art of Connection: Se-woong & Se-jeong</title>
+    <title>황세웅&허세정</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&family=Noto+Serif+KR:wght@200;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400&family=Noto+Serif+KR:wght@200;300;400&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #1a1a1a;
@@ -22,6 +22,7 @@
         }
         .eng { font-family: 'Montserrat', sans-serif; }
         
+        /* 네트워크 배경 가시성 강화 */
         canvas {
             position: fixed;
             top: 0;
@@ -29,23 +30,29 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.4;
+            opacity: 0.6; /* 가시성 상향 */
         }
 
-        .section-padding { padding: 120px 24px; }
-        
+        .section-padding { padding: 100px 24px; }
         .reveal { opacity: 0; transform: translateY(30px); }
         
         .image-container {
             overflow: hidden;
-            border-radius: 4px;
+            border-radius: 2px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
         .parallax-img {
-            transform: scale(1.2);
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: scale(1.15);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Copy Feedback */
+        /* 세련된 대시보드 스타일 */
+        .status-line {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+            margin: 20px 0;
+        }
+
         #copy-toast {
             position: fixed;
             bottom: 40px;
@@ -55,7 +62,7 @@
             color: #fff;
             padding: 12px 24px;
             border-radius: 50px;
-            font-size: 14px;
+            font-size: 13px;
             z-index: 100;
             opacity: 0;
             pointer-events: none;
@@ -63,38 +70,70 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-white">
 
     <canvas id="neural-bg"></canvas>
 
     <!-- Loading Screen -->
     <div id="loader" class="fixed inset-0 z-[100] bg-white flex items-center justify-center">
         <div class="text-center">
-            <div class="eng tracking-[0.5em] text-sm mb-4 animate-pulse">OPTIMIZING CONNECTION</div>
-            <div class="w-48 h-[1px] bg-gray-100 overflow-hidden">
+            <div class="eng tracking-[0.6em] text-[10px] mb-4 animate-pulse uppercase">Initializing System</div>
+            <div class="w-40 h-[1px] bg-gray-100 overflow-hidden">
                 <div id="loader-bar" class="h-full bg-black w-0"></div>
             </div>
         </div>
     </div>
 
     <!-- Hero Section -->
-    <section class="h-screen flex flex-col items-center justify-center relative px-6 text-center">
-        <div class="eng text-xs tracking-[0.4em] mb-8 reveal uppercase">Wedding Exhibition</div>
-        <h1 class="text-5xl md:text-7xl font-light mb-12 tracking-tight leading-tight reveal">
-            황세웅 <span class="text-gray-300 font-extralight">&</span> 허세정
+    <section class="h-screen flex flex-col items-center justify-center relative px-6 text-center bg-transparent">
+        <div class="eng text-[9px] tracking-[0.7em] mb-10 reveal uppercase text-gray-400">The Marriage Repository</div>
+        <h1 class="text-3xl md:text-5xl font-extralight mb-14 tracking-[0.25em] leading-snug reveal">
+            황세웅 <span class="text-gray-200 font-extralight mx-2">&</span> 허세정
         </h1>
-        <div class="eng text-lg tracking-widest reveal font-light">
-            2026. 06. 27. SAT. 2:00 PM<br>
-            MONACO SPACE
+        <div class="eng text-sm tracking-[0.4em] reveal font-light text-gray-400 leading-loose">
+            2026. 06. 27. SAT. 2:00-5:00 PM<br>
+            MONACO SPACE, SEOUL
         </div>
-        <div class="absolute bottom-12 left-50 animate-bounce opacity-30">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+        <div class="absolute bottom-12 animate-bounce opacity-20">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
         </div>
     </section>
 
-    <!-- Quote Section -->
-    <section class="section-padding flex flex-col items-center justify-center text-center bg-white/60 backdrop-blur-sm">
-        <p class="text-lg md:text-xl leading-relaxed max-w-lg font-light reveal italic">
+    <!-- Live Status Dashboard: 배경 투명도 조절로 네트워크 노출 -->
+    <section class="py-16 px-6 bg-white/60 backdrop-blur-md border-y border-gray-100 overflow-hidden">
+        <div class="max-w-screen-sm mx-auto">
+            <div class="reveal mb-10">
+                <div class="flex items-center gap-3 mb-8 justify-center">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
+                    <h3 class="eng text-[10px] tracking-[0.5em] text-gray-400 uppercase">System Status</h3>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-8 text-center">
+                    <div>
+                        <p class="eng text-[9px] text-gray-400 mb-2 uppercase tracking-widest text-blue-600/60">In-Sync Since</p>
+                        <p id="uptime-days" class="eng text-3xl font-extralight text-gray-800">---</p>
+                    </div>
+                    <div>
+                        <p class="eng text-[9px] text-gray-400 mb-2 uppercase tracking-widest text-blue-600/60">Connectivity</p>
+                        <p class="eng text-3xl font-extralight text-blue-600">STABLE</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="status-line"></div>
+            
+            <div class="reveal text-center">
+                <p class="eng text-[9px] text-gray-400 mb-4 uppercase tracking-[0.2em]">Optimization Countdown (ms)</p>
+                <div id="countdown" class="eng text-3xl md:text-4xl font-extralight tracking-[0.1em] tabular-nums text-gray-800">
+                    00:00:00:00
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section: 투명 배경으로 네트워크 유지 -->
+    <section class="section-padding flex flex-col items-center justify-center text-center bg-transparent">
+        <p class="text-base md:text-lg leading-relaxed max-w-lg font-light reveal italic text-gray-600">
             "각기 다른 데이터와 알고리즘으로<br>
             자신만의 세계를 그려오던 두 사람이 만났습니다.<br><br>
             이제 하나의 캔버스 위에<br>
@@ -103,26 +142,24 @@
     </section>
 
     <!-- Gallery Section -->
-    <section class="section-padding max-w-screen-lg mx-auto overflow-hidden">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="image-container reveal" style="transition-delay: 0.1s">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80" alt="Main Photo" class="parallax-img w-full h-[600px] object-cover">
+    <section class="section-padding max-w-screen-lg mx-auto bg-white/30 backdrop-blur-sm rounded-lg">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="image-container reveal">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80" alt="Main Photo" class="parallax-img w-full h-[550px] object-cover">
             </div>
             <div class="space-y-12">
-                <div class="reveal" style="transition-delay: 0.3s">
-                    <h2 class="eng text-3xl font-light mb-4">The Curator</h2>
-                    <p class="text-gray-500 leading-relaxed font-light">
-                        AI 소프트웨어 연구와 교육에 매진해온 황세웅,<br>
-                        데이터 속에서 숨겨진 의미를 찾아내는 허세정.<br>
-                        서로의 삶을 가장 아름다운 데이터로 기록해 나갈<br>
-                        그 첫 번째 전시회에 당신을 초대합니다.
+                <div class="reveal">
+                    <h2 class="eng text-2xl font-light mb-6 tracking-widest">Curated Love</h2>
+                    <p class="text-gray-500 leading-relaxed font-light text-sm md:text-base">
+                        예식 대신 작은 전시와 파티를 준비했습니다.<br>
+                        편한 시간에 오셔서 함께해 주시면 감사하겠습니다.
                     </p>
                 </div>
-                <div class="grid grid-cols-2 gap-4 reveal" style="transition-delay: 0.5s">
-                    <div class="image-container h-48">
+                <div class="grid grid-cols-2 gap-4 reveal">
+                    <div class="image-container h-44">
                         <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Sub Photo 1" class="w-full h-full object-cover">
                     </div>
-                    <div class="image-container h-48 mt-8">
+                    <div class="image-container h-44 mt-6">
                         <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80" alt="Sub Photo 2" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -131,77 +168,86 @@
     </section>
 
     <!-- Invitation Info -->
-    <section class="section-padding bg-stone-50">
+    <section class="section-padding bg-stone-50/30 backdrop-blur-md">
         <div class="max-w-screen-sm mx-auto">
-            <div class="mb-20 text-center reveal">
-                <h3 class="eng text-xs tracking-[0.4em] mb-10 text-gray-400">FAMILY</h3>
-                <div class="text-xl space-y-4 font-light">
-                    <p>황종범 · 김서경 <span class="text-sm text-gray-400 mx-2">의 차남</span> <strong class="font-normal">세웅</strong></p>
-                    <p>허재구 · 홍수옥 <span class="text-sm text-gray-400 mx-2">의 장녀</span> <strong class="font-normal">세정</strong></p>
+            <div class="mb-24 text-center reveal">
+                <h3 class="eng text-[10px] tracking-[0.5em] mb-12 text-gray-300 uppercase">Family</h3>
+                <div class="text-lg space-y-6 font-light">
+                    <p>황종범 · 김서경 <span class="text-xs text-gray-400 mx-2">의 차남</span> <strong class="font-light">세웅</strong></p>
+                    <p>허재구 · 홍수옥 <span class="text-xs text-gray-400 mx-2">의 장녀</span> <strong class="font-light">세정</strong></p>
                 </div>
             </div>
 
-            <div class="mb-20 text-center reveal">
-                <h3 class="eng text-xs tracking-[0.4em] mb-10 text-gray-400">VENUE</h3>
-                <p class="text-xl mb-2 font-light">모나코 스페이스</p>
-                <p class="text-gray-500 text-sm mb-8 font-light leading-relaxed">
+            <div class="mb-24 text-center reveal">
+                <h3 class="eng text-[10px] tracking-[0.5em] mb-12 text-gray-300 uppercase">Location</h3>
+                <p class="text-lg mb-3 font-light">모나코 스페이스</p>
+                <p class="text-gray-400 text-xs mb-10 font-light leading-relaxed tracking-wider">
                     서울 서초구 서초대로 397 부띠크모나코 B1<br>
-                    (강남역 9번 출구에서 200m)
+                    강남역 9번 출구에서 200m
                 </p>
-                <a href="https://map.kakao.com/?q=모나코스페이스" target="_blank" class="inline-block border border-black px-8 py-3 text-sm eng tracking-widest hover:bg-black hover:text-white transition-all">
-                    OPEN MAP
+                <a href="https://naver.me/FIfsIZIn" target="_blank" class="inline-block border border-black/10 px-10 py-3 text-[10px] eng tracking-[0.3em] hover:bg-black hover:text-white transition-all bg-white/50 backdrop-blur-sm">
+                    OPEN NAVER MAP
                 </a>
             </div>
 
             <div class="text-center reveal">
-                <h3 class="eng text-xs tracking-[0.4em] mb-10 text-gray-400">GIFTS</h3>
-                <div class="bg-white p-8 border border-gray-100 shadow-sm inline-block w-full">
-                    <p class="text-sm text-gray-500 mb-4">신랑 측 마음 전하실 곳</p>
-                    <div class="flex items-center justify-between gap-4 border-b border-gray-50 pb-4 mb-4">
-                        <span class="text-base font-light">토스뱅크 1000-3101-7029 황세웅</span>
-                        <button onclick="copyText('1000-3101-7029')" class="text-xs text-blue-600 eng font-bold">COPY</button>
+                <h3 class="eng text-[10px] tracking-[0.5em] mb-12 text-gray-300 uppercase">Gift</h3>
+                <div class="bg-white/80 backdrop-blur-md p-10 border border-white shadow-sm w-full space-y-10 rounded-sm">
+                    <div>
+                        <p class="text-[9px] text-gray-300 mb-5 eng tracking-[0.3em] uppercase">Groom Side</p>
+                        <div class="flex items-center justify-between gap-4 border-b border-gray-100 pb-5">
+                            <span class="text-sm font-light">토스뱅크 1000-3101-7029 황세웅</span>
+                            <button onclick="copyText('1000-3101-7029')" class="text-[9px] text-blue-500 eng font-bold">COPY</button>
+                        </div>
                     </div>
-                    <p class="text-[10px] text-gray-400">보내주신 축복은 저희의 소중한 시작에 밑거름으로 사용하겠습니다.</p>
+                    <div>
+                        <p class="text-[9px] text-gray-300 mb-5 eng tracking-[0.3em] uppercase">Bride Side</p>
+                        <div class="flex items-center justify-between gap-4 border-b border-gray-100 pb-5">
+                            <span class="text-sm font-light">신한은행 110-223-140846 허세정</span>
+                            <button onclick="copyText('110-223-140846')" class="text-[9px] text-blue-500 eng font-bold">COPY</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="section-padding text-center bg-white">
-        <div class="eng text-[10px] tracking-[0.5em] text-gray-300">
-            OPTIMIZED & CURATED BY GEMINI & SEWOONG
+    <footer class="py-20 text-center bg-transparent">
+        <div class="eng text-[9px] tracking-[0.6em] text-gray-400">
+            OPTIMIZED & CURATED BY SEWOONG & SEJEONG
         </div>
     </footer>
 
     <div id="copy-toast">계좌번호가 복사되었습니다.</div>
 
     <script>
-        // 1. Loading Animation
+        // 1. Loading & Initial UI
         window.addEventListener('load', () => {
             gsap.to("#loader-bar", {
                 width: "100%",
-                duration: 1.5,
+                duration: 1.2,
                 ease: "power2.inOut",
                 onComplete: () => {
                     gsap.to("#loader", {
                         opacity: 0,
-                        duration: 1,
+                        duration: 0.8,
                         onComplete: () => {
                             document.getElementById('loader').style.display = 'none';
                             initAnimations();
+                            startCountdown();
                         }
                     });
                 }
             });
         });
 
-        // 2. Neural Background (Canvas)
+        // 2. Interactive Neural Background (Enhanced)
         const canvas = document.getElementById('neural-bg');
         const ctx = canvas.getContext('2d');
         let dots = [];
-        const dotCount = 60;
-        const maxDistance = 150;
+        const dotCount = 80; // 입자 밀도 상향
+        let mouse = { x: null, y: null };
 
         function initCanvas() {
             canvas.width = window.innerWidth;
@@ -211,34 +257,60 @@
                 dots.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4
                 });
             }
         }
 
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        // 터치 기기 대응
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouse.x = e.touches[0].clientX;
+                mouse.y = e.touches[0].clientY;
+            }
+        });
+
         function drawCanvas() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
             dots.forEach((dot, i) => {
                 dot.x += dot.vx;
                 dot.y += dot.vy;
+                
                 if(dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
                 if(dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
 
+                // Mouse interaction
+                if (mouse.x) {
+                    let dx = mouse.x - dot.x;
+                    let dy = mouse.y - dot.y;
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 200) {
+                        dot.x -= dx * 0.02;
+                        dot.y -= dy * 0.02;
+                    }
+                }
+
                 ctx.beginPath();
-                ctx.arc(dot.x, dot.y, 1.5, 0, Math.PI * 2);
+                ctx.arc(dot.x, dot.y, 1.2, 0, Math.PI * 2);
                 ctx.fillStyle = '#0047FF';
                 ctx.fill();
 
                 for(let j=i+1; j<dotCount; j++) {
                     const dot2 = dots[j];
                     const dist = Math.sqrt((dot.x - dot2.x)**2 + (dot.y - dot2.y)**2);
-                    if(dist < maxDistance) {
+                    if(dist < 180) {
                         ctx.beginPath();
                         ctx.moveTo(dot.x, dot.y);
                         ctx.lineTo(dot2.x, dot2.y);
-                        ctx.strokeStyle = `rgba(0, 71, 255, ${1 - dist/maxDistance})`;
-                        ctx.lineWidth = 0.5;
+                        ctx.strokeStyle = `rgba(0, 71, 255, ${0.25 * (1 - dist/180)})`;
+                        ctx.lineWidth = 0.6;
                         ctx.stroke();
                     }
                 }
@@ -250,42 +322,66 @@
         initCanvas();
         drawCanvas();
 
-        // 3. GSAP Animations
-        gsap.registerPlugin(ScrollTrigger);
+        // 3. Status Dashboard Logic (2019-08-10 적용)
+        function startCountdown() {
+            const targetDate = new Date('2026-06-27T14:00:00').getTime();
+            const firstMeetingDate = new Date('2019-08-10T00:00:00').getTime();
 
+            function update() {
+                const now = new Date().getTime();
+                const diff = targetDate - now;
+                const uptimeDiff = now - firstMeetingDate;
+
+                if (diff > 0) {
+                    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const s = Math.floor((diff % (1000 * 60)) / 1000);
+                    const ms = Math.floor((diff % 1000) / 10);
+                    document.getElementById('countdown').innerText = 
+                        `${String(d).padStart(2, '0')}:${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}.${String(ms).padStart(2, '0')}`;
+                }
+
+                const uptimeDays = Math.floor(uptimeDiff / (1000 * 60 * 60 * 24));
+                document.getElementById('uptime-days').innerText = uptimeDays + "d";
+                
+                requestAnimationFrame(update);
+            }
+            update();
+        }
+
+        // 4. Scroll Animations
+        gsap.registerPlugin(ScrollTrigger);
         function initAnimations() {
-            // Reveal animations
             gsap.utils.toArray('.reveal').forEach((elem) => {
                 gsap.to(elem, {
                     scrollTrigger: {
                         trigger: elem,
-                        start: "top 85%",
+                        start: "top 90%",
                         toggleActions: "play none none none"
                     },
                     opacity: 1,
                     y: 0,
-                    duration: 1.2,
+                    duration: 1.5,
                     ease: "power3.out"
                 });
             });
 
-            // Parallax Images
             gsap.utils.toArray('.parallax-img').forEach((img) => {
                 gsap.to(img, {
                     scrollTrigger: {
                         trigger: img,
                         start: "top bottom",
                         end: "bottom top",
-                        scrub: true
+                        scrub: 1
                     },
                     scale: 1,
-                    y: -30,
+                    y: -20,
                     ease: "none"
                 });
             });
         }
 
-        // 4. Utility Functions
         function copyText(text) {
             const tempInput = document.createElement("input");
             tempInput.value = text;
@@ -296,9 +392,7 @@
 
             const toast = document.getElementById('copy-toast');
             toast.style.opacity = '1';
-            setTimeout(() => {
-                toast.style.opacity = '0';
-            }, 2000);
+            setTimeout(() => { toast.style.opacity = '0'; }, 2000);
         }
     </script>
 </body>
