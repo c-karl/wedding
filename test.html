@@ -334,7 +334,8 @@
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <a href="https://naver.me/FIfsIZIn" target="_blank" class="pill-btn eng text-[12px]">NAVER MAP</a>
-                    <a href="https://map.kakao.com/link/map/모나코스페이스,37.497551,127.025686" target="_blank" class="pill-btn eng text-[12px]">KAKAO MAP</a>
+                    <!-- 카카오맵 딥링크 적용: 모바일에서는 앱으로 열리고, 설치되지 않거나 PC 환경이면 웹 브라우저로 이동 -->
+                    <a href="kakaomap://search?q=모나코스페이스&p=37.497551,127.025686" onclick="if(!/(iPhone|iPad|iPod|Android)/i.test(navigator.userAgent)){ window.open('https://map.kakao.com/link/map/모나코스페이스,37.497551,127.025686'); return false; }" class="pill-btn eng text-[12px]">KAKAO MAP</a>
                     <a href="tmap://search?name=모나코스페이스" onclick="if(!/(iPhone|iPad|iPod|Android)/i.test(navigator.userAgent)){ window.open('https://tmap.life/3ccb507f'); return false; }" class="pill-btn eng text-[12px]">TMAP</a>
                 </div>
             </div>
@@ -533,16 +534,19 @@
         }
 
         function copyText(text) {
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text).then(showToast);
-            } else {
-                const el = document.createElement('textarea'); 
-                el.value = text; 
-                document.body.appendChild(el); 
-                el.select(); 
+            const el = document.createElement('textarea'); 
+            el.value = text; 
+            el.style.position = 'fixed';
+            el.style.top = '-9999px';
+            document.body.appendChild(el); 
+            el.select(); 
+            try {
                 document.execCommand('copy'); 
-                document.body.removeChild(el);
                 showToast();
+            } catch (err) {
+                console.error('Copy failed:', err);
+            } finally {
+                document.body.removeChild(el);
             }
         }
 
