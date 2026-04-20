@@ -409,6 +409,9 @@
             history.scrollRestoration = 'manual';
         }
 
+        // 시스템 로딩 완료 상태를 추적하는 변수 추가
+        let systemReady = false;
+
         // 1. Loading & Initialization
         window.onload = () => {
             window.scrollTo(0, 0); 
@@ -429,6 +432,8 @@
                         document.getElementById('loader').style.display = 'none';
                         initAnimations();
                         initSwiper();
+                        // 로딩 애니메이션이 완전히 끝난 후 팝업 동작을 허용합니다.
+                        systemReady = true;
                     }});
                 }
             }, 250);
@@ -554,7 +559,7 @@
             el.select(); 
             try {
                 document.execCommand('copy'); 
-                showToast();
+                showToast('계좌번호가 복사되었습니다.');
             } catch (err) {
                 console.error('Copy failed:', err);
             } finally {
@@ -562,20 +567,38 @@
             }
         }
 
-        function showToast() {
+        function showToast(msg) {
             const toast = document.getElementById('copy-toast'); 
+            if(msg) toast.innerText = msg;
             toast.classList.add('show'); 
             setTimeout(() => toast.classList.remove('show'), 2000);
         }
 
         document.getElementById('save-calendar-hero').onclick = () => {
+            const ua = navigator.userAgent.toLowerCase();
+            
+            // 카카오톡 브라우저에서 클릭 시 외부 기본 브라우저(Safari/Chrome)로 강제 실행 유도
+            if (ua.indexOf('kakaotalk') > -1) {
+                location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(location.href);
+                return;
+            }
+            
+            // 인스타그램, 라인 등 다른 인앱 브라우저 체크 및 안내 토스트 표시
+            if (ua.indexOf('instagram') > -1 || ua.indexOf('line') > -1) {
+                showToast('현재 화면에서는 저장이 제한됩니다. 우측 상단 메뉴에서 Safari나 Chrome으로 열어주세요.');
+                return;
+            }
+
             const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'BEGIN:VEVENT', 'DTSTART:20260627T140000', 'DTEND:20260627T170000', 'SUMMARY:황세웅 & 허세정 Wedding Exhibition', 'LOCATION:모나코 스페이스', 'END:VEVENT', 'END:VCALENDAR'].join('\n');
             const blob = new Blob([ics], { type: 'text/calendar' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a'); 
             a.href = url; 
             a.download = 'wedding_invite.ics'; 
+            document.body.appendChild(a);
             a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 100);
         };
 
         // 5. RSVP 팝업 로직
@@ -585,9 +608,9 @@
         let popupClosed = false;
 
         window.addEventListener('scroll', () => {
-            if (popupClosed) return;
+            // 로딩이 완전히 끝나기 전이거나 팝업을 이미 닫았으면 실행하지 않음
+            if (popupClosed || !systemReady) return;
             
-            // 화면을 80% 이상 내렸을 때 팝업 부드럽게 등장
             if (window.scrollY > window.innerHeight * 0.8) {
                 if (!popupShown) {
                     rsvpPopup.classList.remove('translate-y-[120%]', 'opacity-0');
@@ -597,7 +620,6 @@
             }
         }, { passive: true });
 
-        // X 버튼 클릭 시 팝업 닫기 및 재등장 방지
         closeRsvpPopupBtn.addEventListener('click', () => {
             rsvpPopup.classList.remove('translate-y-0', 'opacity-100');
             rsvpPopup.classList.add('translate-y-[120%]', 'opacity-0');
