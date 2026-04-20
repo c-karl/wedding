@@ -7,6 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <!-- Swiper CSS & JS 추가 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&family=Noto+Serif+KR:wght@200;300;400;500&family=JetBrains+Mono:wght@100;200&family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet">
     
     <style>
@@ -113,41 +116,15 @@
             letter-spacing: 0.1em;
         }
 
-        #bgm-btn {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            z-index: 9000;
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 25px rgba(0,0,0,0.1);
-        }
-        .music-bars { display: flex; align-items: flex-end; gap: 3px; height: 18px; }
-        .bar { width: 3.5px; background: var(--accent); border-radius: 1.5px; transition: height 0.3s; }
-        .playing .bar { animation: music-bar 0.8s infinite ease-in-out; }
-        .playing .bar:nth-child(1) { height: 10px; }
-        .playing .bar:nth-child(2) { animation-delay: 0.2s; height: 18px; }
-        .playing .bar:nth-child(3) { animation-delay: 0.4s; height: 12px; }
-        .muted .bar { height: 4px !important; opacity: 0.3; animation: none !important; }
-
-        @keyframes music-bar { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.5); } }
-
         .countdown-value {
-            font-size: clamp(1.2rem, 6.5vw, 3.8rem);
+            font-size: clamp(1.2rem, 5vw, 2.8rem); /* PC 화면에서 벗어나지 않도록 최대 폰트 크기 조정 */
             letter-spacing: 0.05em;
             font-weight: 200;
             margin: 35px auto;
             display: block;
             text-align: center;
             width: 100%;
+            white-space: nowrap; /* 줄바꿈 방지 */
         }
 
         .pill-btn {
@@ -193,23 +170,12 @@
 
     <canvas id="neural-bg"></canvas>
 
-    <audio id="wedding-bgm" loop preload="auto">
-        <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-piano-116.mp3" type="audio/mpeg">
-    </audio>
-
-    <div id="bgm-btn" class="muted">
-        <div class="music-bars">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-    </div>
-
     <div id="loader">
         <div class="text-center">
             <p class="mono text-[10px] tracking-[0.6em] mb-6 text-gray-400 uppercase">Initializing Wedding System</p>
-            <div class="w-48 h-[1px] bg-gray-100 relative overflow-hidden">
-                <div id="loader-progress" class="absolute inset-y-0 left-0 bg-blue-600 w-0"></div>
+            <!-- 로딩바 디자인 개선: 모서리 둥글게, 두께 증가, 부드러운 전환 효과 추가 -->
+            <div class="w-48 h-[2px] bg-gray-200 relative overflow-hidden rounded-full">
+                <div id="loader-progress" class="absolute inset-y-0 left-0 bg-blue-600 w-0 transition-all duration-300 ease-out rounded-full"></div>
             </div>
             <p id="loader-status" class="mono text-[8px] mt-4 text-blue-600 opacity-50"></p>
         </div>
@@ -274,7 +240,7 @@
                     </div>
                     <div class="text-center">
                         <p class="eng text-[9px] text-gray-400 mb-2 uppercase tracking-widest">Protocol</p>
-                        <p class="eng text-xs text-gray-600 font-bold tracking-widest">MARRIAGE_1.0</p>
+                        <p class="eng text-xs text-blue-600 font-bold tracking-widest">MARRIAGE_1.0</p>
                     </div>
                 </div>
             </div>
@@ -282,39 +248,58 @@
 
         <!-- Program Section -->
         <section id="story" class="py-32 px-6">
-            <div class="max-w-screen-lg mx-auto grid md:grid-cols-2 gap-20 items-center">
-                <div class="reveal glass-panel p-10 md:p-0 md:bg-transparent md:backdrop-blur-none">
+            <div class="max-w-screen-lg mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+                <!-- 레이아웃 여백 수정: md:p-0 제거, 일관된 패딩 부여 -->
+                <div class="reveal glass-panel p-8 sm:p-10 md:bg-white/40">
                     <span class="eng text-[10px] tracking-[0.5em] text-gray-400 mb-8 block uppercase">Program</span>
                     <h2 class="text-3xl md:text-5xl bm-font leading-snug mb-10">예식 대신 작은 전시와<br>파티를 준비했습니다.</h2>
-                    <p class="text-gray-600 leading-relaxed font-normal mb-16 text-sm md:text-base">
+                    <p class="text-gray-600 leading-relaxed font-normal mb-16 text-sm md:text-base break-keep">
                         정해진 식순보다는 함께 대화하고 즐기는 시간을 원했습니다.<br>
                         오후 2시부터 5시 사이, 편안한 시간에 오셔서 저희의 이야기를 감상해 주세요.
                     </p>
-                    <div class="space-y-12 relative">
-                        <div class="w-[1px] bg-blue-600/30 absolute left-0 top-2 h-full"></div>
-                        <div class="relative pl-10">
+                    
+                    <!-- 프로그램 타임라인 디자인 개선 (PC/모바일 레이아웃 최적화) -->
+                    <div class="space-y-10 relative">
+                        <div class="w-[1px] bg-gray-200 absolute left-0 top-1 bottom-1"></div>
+                        <div class="relative pl-8">
+                            <div class="absolute -left-[2.5px] top-1.5 w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
                             <h4 class="eng text-xs font-bold tracking-widest mb-2 text-blue-600">Curated Love</h4>
-                            <p class="text-gray-700 text-sm font-light tracking-wide">두 사람의 이야기가 담긴 전시</p>
+                            <p class="text-gray-700 text-sm font-light tracking-wide break-keep">두 사람의 이야기가 담긴 전시</p>
                         </div>
-                        <div class="relative pl-10">
+                        <div class="relative pl-8">
+                            <div class="absolute -left-[2.5px] top-1.5 w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
                             <h4 class="eng text-xs font-bold tracking-widest mb-2 text-blue-600">The Pairing</h4>
-                            <p class="text-gray-700 text-sm font-light tracking-wide">엄선된 주류와 케이터링 파티</p>
+                            <p class="text-gray-700 text-sm font-light tracking-wide break-keep">엄선된 주류와 케이터링 파티</p>
                         </div>
-                        <div class="relative pl-10">
+                        <div class="relative pl-8">
+                            <div class="absolute -left-[2.5px] top-1.5 w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
                             <h4 class="eng text-xs font-bold tracking-widest mb-2 text-blue-600">DJ Party</h4>
-                            <p class="text-gray-700 text-sm font-light tracking-wide">감각적인 라이브 DJ 세션과 자유로운 대화</p>
+                            <p class="text-gray-700 text-sm font-light tracking-wide break-keep">감각적인 라이브 DJ 세션과 자유로운 대화</p>
                         </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4 reveal">
-                    <div class="aspect-[3/4] overflow-hidden bg-gray-100 col-span-2 rounded-lg shadow-xl">
-                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80" alt="Main" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
-                    </div>
-                    <div class="aspect-square overflow-hidden bg-gray-100 rounded-lg shadow-md">
-                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Sub" class="w-full h-full object-cover opacity-80">
-                    </div>
-                    <div class="aspect-square overflow-hidden bg-gray-100 rounded-lg shadow-md">
-                        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80" alt="Sub" class="w-full h-full object-cover opacity-80">
+                
+                <!-- 갤러리 영역 (Swiper 슬라이드 적용) -->
+                <div class="reveal">
+                    <div class="swiper mySwiper rounded-lg shadow-xl overflow-hidden glass-panel aspect-[3/4]">
+                        <div class="swiper-wrapper">
+                            <!-- 깃허브 리포지토리의 images 폴더 내 파일로 연결 -->
+                            <div class="swiper-slide">
+                                <img src="./images/1.jpg" alt="Gallery 1" class="w-full h-full object-cover">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="./images/2.jpg" alt="Gallery 2" class="w-full h-full object-cover">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="./images/3.jpg" alt="Gallery 3" class="w-full h-full object-cover">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="./images/4.jpg" alt="Gallery 4" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next" style="color: white; transform: scale(0.7); opacity: 0.8;"></div>
+                        <div class="swiper-button-prev" style="color: white; transform: scale(0.7); opacity: 0.8;"></div>
                     </div>
                 </div>
             </div>
@@ -342,7 +327,7 @@
             <div class="max-w-screen-md mx-auto text-center reveal">
                 <span class="eng text-[10px] tracking-[0.5em] text-gray-400 mb-8 block uppercase">Location</span>
                 <h3 class="text-2xl bm-font mb-4">모나코 스페이스</h3>
-                <p class="text-gray-500 text-xs md:text-sm mb-12 tracking-wider leading-relaxed">서울 서초구 서초대로 397 부띠크모나코 B1<br>강남역 9번 출구에서 200m (도보 3분)</p>
+                <p class="text-gray-500 text-xs md:text-sm mb-12 tracking-wider leading-relaxed break-keep">서울 서초구 서초대로 397 부띠크모나코 B1<br>강남역 9번 출구에서 200m (도보 3분)</p>
                 <div class="h-80 w-full mb-12 overflow-hidden glass-panel relative" id="map-container">
                     <iframe src="https://www.google.com/maps?q=%EB%AA%A8%EB%82%98%EC%BD%94%20%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4%20%EC%84%9C%EC%9A%B8&z=16&output=embed" class="w-full h-full border-0" loading="lazy"></iframe>
                 </div>
@@ -359,7 +344,7 @@
             <div class="max-w-md mx-auto text-center reveal glass-panel p-10">
                 <span class="eng text-[10px] tracking-[0.5em] text-gray-400 mb-8 block uppercase">RSVP</span>
                 <h3 class="text-2xl bm-font mb-6">참석 여부 전달</h3>
-                <p class="text-gray-500 text-sm mb-10 leading-relaxed font-light">
+                <p class="text-gray-500 text-sm mb-10 leading-relaxed font-light break-keep">
                     파티와 전시 형태로 진행되는 만큼,<br>
                     원활한 공간 준비와 케이터링을 위해<br>
                     참석 여부를 미리 알려주시면 큰 도움이 됩니다.
@@ -404,42 +389,14 @@
     <div id="copy-toast">계좌번호가 복사되었습니다.</div>
 
     <script>
-        // 1. Audio Activation Logic
-        const audio = document.getElementById('wedding-bgm');
-        const bgmBtn = document.getElementById('bgm-btn');
-        let audioInitialized = false;
-
-        function startMusic() {
-            if (!audioInitialized) {
-                audio.play().then(() => {
-                    bgmBtn.classList.remove('muted');
-                    bgmBtn.classList.add('playing');
-                    audioInitialized = true;
-                }).catch(err => console.log("Interaction required for audio"));
-            }
+        // 새로고침 시 스크롤을 유지하려는 브라우저의 기본 동작 방지
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
         }
 
-        bgmBtn.onclick = (e) => {
-            e.stopPropagation();
-            if (audio.paused) {
-                audio.play();
-                bgmBtn.classList.remove('muted');
-                bgmBtn.classList.add('playing');
-                audioInitialized = true;
-            } else {
-                audio.pause();
-                bgmBtn.classList.add('muted');
-                bgmBtn.classList.remove('playing');
-            }
-        };
-
-        ['click', 'touchstart', 'scroll'].forEach(evt => {
-            window.addEventListener(evt, startMusic, { once: true, passive: true });
-        });
-
-        // 2. Loading & Initialization
+        // 1. Loading & Initialization
         window.onload = () => {
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 0); // 항상 맨 위에서 시작
             
             const bar = document.getElementById('loader-progress');
             const statusText = document.getElementById('loader-status');
@@ -456,16 +413,17 @@
                     gsap.to("#loader", { opacity: 0, duration: 1, onComplete: () => {
                         document.getElementById('loader').style.display = 'none';
                         initAnimations();
+                        initSwiper(); // 로딩 완료 후 슬라이더 초기화
                     }});
                 }
-            }, 200);
+            }, 250);
 
             initCanvas();
             drawCanvas();
             updateCountdown();
         };
 
-        // 3. Neural Network Canvas
+        // 2. Neural Network Canvas
         const canvas = document.getElementById('neural-bg');
         const ctx = canvas.getContext('2d');
         let dots = [];
@@ -520,10 +478,10 @@
             requestAnimationFrame(drawCanvas);
         }
 
-        // 4. Countdown Optimization (DOM Caching)
+        // 3. Countdown Optimization
         function updateCountdown() {
             const target = new Date('2026-06-27T14:00:00+09:00').getTime();
-            const countdownEl = document.getElementById('countdown'); // 캐싱을 통해 DOM 탐색 최소화
+            const countdownEl = document.getElementById('countdown');
             
             function tick() {
                 const now = Date.now();
@@ -543,7 +501,7 @@
             tick();
         }
 
-        // 5. Utilities & Modern APIs
+        // 4. Utilities & Modern APIs
         function initAnimations() {
             gsap.registerPlugin(ScrollTrigger);
             gsap.utils.toArray('.reveal').forEach(el => {
@@ -551,12 +509,32 @@
             });
         }
 
-        // Deprecated execCommand 대신 최신 clipboard API 사용
+        // Swiper 갤러리 초기화 함수 추가
+        function initSwiper() {
+            if (typeof Swiper !== 'undefined') {
+                new Swiper(".mySwiper", {
+                    loop: true,
+                    spaceBetween: 10,
+                    pagination: {
+                        el: ".swiper-pagination",
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                    },
+                    autoplay: {
+                        delay: 3500,
+                        disableOnInteraction: false,
+                    }
+                });
+            }
+        }
+
         function copyText(text) {
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(text).then(showToast);
             } else {
-                // HTTPS 환경이 아니거나 구형 브라우저를 위한 폴백
                 const el = document.createElement('textarea'); 
                 el.value = text; 
                 document.body.appendChild(el); 
