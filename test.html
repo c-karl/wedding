@@ -117,14 +117,14 @@
         }
 
         .countdown-value {
-            font-size: clamp(1.2rem, 5vw, 2.8rem); /* PC 화면에서 벗어나지 않도록 최대 폰트 크기 조정 */
+            font-size: clamp(1.2rem, 5vw, 2.8rem);
             letter-spacing: 0.05em;
             font-weight: 200;
             margin: 35px auto;
             display: block;
             text-align: center;
             width: 100%;
-            white-space: nowrap; /* 줄바꿈 방지 */
+            white-space: nowrap;
         }
 
         .pill-btn {
@@ -173,7 +173,6 @@
     <div id="loader">
         <div class="text-center">
             <p class="mono text-[10px] tracking-[0.6em] mb-6 text-gray-400 uppercase">Initializing Wedding System</p>
-            <!-- 로딩바 디자인 개선: 모서리 둥글게, 두께 증가, 부드러운 전환 효과 추가, 중앙 정렬(mx-auto) 반영 -->
             <div class="w-48 h-[2px] bg-gray-200 relative overflow-hidden rounded-full mx-auto">
                 <div id="loader-progress" class="absolute inset-y-0 left-0 bg-blue-600 w-0 transition-all duration-300 ease-out rounded-full"></div>
             </div>
@@ -249,7 +248,6 @@
         <!-- Program Section -->
         <section id="story" class="py-32 px-6">
             <div class="max-w-screen-lg mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-                <!-- 레이아웃 여백 수정: md:p-0 제거, 일관된 패딩 부여 -->
                 <div class="reveal glass-panel p-8 sm:p-10 md:bg-white/40">
                     <span class="eng text-[10px] tracking-[0.5em] text-gray-400 mb-8 block uppercase">Program</span>
                     <h2 class="text-3xl md:text-5xl bm-font leading-snug mb-10">예식 대신 작은 전시와<br>파티를 준비했습니다.</h2>
@@ -258,7 +256,6 @@
                         오후 2시부터 5시 사이, 편안한 시간에 오셔서 저희의 이야기를 감상해 주세요.
                     </p>
                     
-                    <!-- 프로그램 타임라인 디자인 개선 (PC/모바일 레이아웃 최적화) -->
                     <div class="space-y-10 relative">
                         <div class="w-[1px] bg-gray-200 absolute left-0 top-1 bottom-1"></div>
                         <div class="relative pl-8">
@@ -279,12 +276,9 @@
                     </div>
                 </div>
                 
-                <!-- 갤러리 영역 (Swiper 슬라이드 적용) -->
-                <!-- 레이아웃 무한 팽창 버그를 막기 위해 min-w-0, w-full 속성을 추가했습니다. -->
                 <div class="reveal min-w-0 w-full">
                     <div class="swiper mySwiper rounded-lg shadow-xl overflow-hidden glass-panel aspect-[3/4]">
                         <div class="swiper-wrapper">
-                            <!-- 깃허브 리포지토리의 images 폴더 내 파일로 연결 -->
                             <div class="swiper-slide">
                                 <img src="./images/1.jpg" alt="Gallery 1" class="w-full h-full object-cover">
                             </div>
@@ -334,14 +328,13 @@
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <a href="https://naver.me/FIfsIZIn" target="_blank" class="pill-btn eng text-[12px]">NAVER MAP</a>
-                    <!-- 카카오맵 딥링크 적용: 모바일에서는 앱으로 열리고, 설치되지 않거나 PC 환경이면 웹 브라우저로 이동 -->
                     <a href="kakaomap://search?q=모나코스페이스&p=37.497551,127.025686" onclick="if(!/(iPhone|iPad|iPod|Android)/i.test(navigator.userAgent)){ window.open('https://map.kakao.com/link/map/모나코스페이스,37.497551,127.025686'); return false; }" class="pill-btn eng text-[12px]">KAKAO MAP</a>
                     <a href="tmap://search?name=모나코스페이스" onclick="if(!/(iPhone|iPad|iPod|Android)/i.test(navigator.userAgent)){ window.open('https://tmap.life/3ccb507f'); return false; }" class="pill-btn eng text-[12px]">TMAP</a>
                 </div>
             </div>
         </section>
 
-        <!-- RSVP Section -->
+        <!-- RSVP Section (기존 영역 유지) -->
         <section id="rsvp" class="py-32 px-6 border-t border-gray-100 bg-white/50 backdrop-blur-sm">
             <div class="max-w-md mx-auto text-center reveal glass-panel p-10">
                 <span class="eng text-[10px] tracking-[0.5em] text-gray-400 mb-8 block uppercase">RSVP</span>
@@ -388,6 +381,26 @@
         <p class="eng text-[9px] tracking-[0.6em] text-gray-300 uppercase font-light">Optimized & Curated by Sewoong & Sejeong</p>
     </footer>
 
+    <!-- RSVP 팝업 (스크롤 시 등장) -->
+    <div id="rsvp-popup" class="fixed bottom-0 left-0 right-0 z-[9000] p-4 sm:p-6 transition-all duration-700 ease-out transform translate-y-[120%] opacity-0 pointer-events-none flex justify-center">
+        <div class="glass-panel w-full max-w-sm p-8 relative pointer-events-auto shadow-2xl bg-white/95">
+            <button id="close-rsvp-popup" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-800 transition-colors rounded-full hover:bg-gray-100">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="text-center mt-2">
+                <span class="eng text-[10px] tracking-[0.5em] text-gray-400 mb-3 block uppercase">RSVP</span>
+                <h3 class="text-xl bm-font mb-4">참석 여부 전달</h3>
+                <p class="text-gray-500 text-xs mb-6 leading-relaxed font-light break-keep">
+                    원활한 공간 준비와 케이터링을 위해<br>
+                    참석 여부를 미리 알려주시면 큰 도움이 됩니다.
+                </p>
+                <a href="https://forms.gle/wno8rjNoujhYzC1s7" target="_blank" class="pill-btn primary-btn w-full text-sm h-12">
+                    참석 의사 전달하기
+                </a>
+            </div>
+        </div>
+    </div>
+
     <div id="copy-toast">계좌번호가 복사되었습니다.</div>
 
     <script>
@@ -398,7 +411,7 @@
 
         // 1. Loading & Initialization
         window.onload = () => {
-            window.scrollTo(0, 0); // 항상 맨 위에서 시작
+            window.scrollTo(0, 0); 
             
             const bar = document.getElementById('loader-progress');
             const statusText = document.getElementById('loader-status');
@@ -415,7 +428,7 @@
                     gsap.to("#loader", { opacity: 0, duration: 1, onComplete: () => {
                         document.getElementById('loader').style.display = 'none';
                         initAnimations();
-                        initSwiper(); // 로딩 완료 후 슬라이더 초기화
+                        initSwiper();
                     }});
                 }
             }, 250);
@@ -511,7 +524,6 @@
             });
         }
 
-        // Swiper 갤러리 초기화 함수 추가
         function initSwiper() {
             if (typeof Swiper !== 'undefined') {
                 new Swiper(".mySwiper", {
@@ -565,6 +577,32 @@
             a.download = 'wedding_invite.ics'; 
             a.click();
         };
+
+        // 5. RSVP 팝업 로직
+        const rsvpPopup = document.getElementById('rsvp-popup');
+        const closeRsvpPopupBtn = document.getElementById('close-rsvp-popup');
+        let popupShown = false;
+        let popupClosed = false;
+
+        window.addEventListener('scroll', () => {
+            if (popupClosed) return;
+            
+            // 화면을 80% 이상 내렸을 때 팝업 부드럽게 등장
+            if (window.scrollY > window.innerHeight * 0.8) {
+                if (!popupShown) {
+                    rsvpPopup.classList.remove('translate-y-[120%]', 'opacity-0');
+                    rsvpPopup.classList.add('translate-y-0', 'opacity-100');
+                    popupShown = true;
+                }
+            }
+        }, { passive: true });
+
+        // X 버튼 클릭 시 팝업 닫기 및 재등장 방지
+        closeRsvpPopupBtn.addEventListener('click', () => {
+            rsvpPopup.classList.remove('translate-y-0', 'opacity-100');
+            rsvpPopup.classList.add('translate-y-[120%]', 'opacity-0');
+            popupClosed = true;
+        });
 
         window.addEventListener('resize', initCanvas);
     </script>
