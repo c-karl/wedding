@@ -9,16 +9,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&family=Noto+Serif+KR:wght@200;300;400;500&family=JetBrains+Mono:wght@100;200&family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Noto+Serif+KR:wght@300;400;500;600&family=JetBrains+Mono:wght@200;400&family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --accent: #0047FF;
             --text-main: #1a1a1a;
-            --text-muted: #888888;
+            --text-muted: #555555;
             --bg: #ffffff;
             --calendar-accent: #0047FF;
-            --glass: rgba(255, 255, 255, 0.82);
+            --glass: rgba(255, 255, 255, 0.9);
         }
 
         * { box-sizing: border-box; }
@@ -33,6 +33,7 @@
             font-family: 'Noto Serif KR', serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            font-size: 17px;
         }
 
         .mono { font-family: 'JetBrains Mono', monospace; }
@@ -44,7 +45,7 @@
             position: fixed;
             inset: 0;
             z-index: -1;
-            opacity: 0.55;
+            opacity: 0.4;
             pointer-events: none;
         }
 
@@ -62,10 +63,10 @@
         .reveal { opacity: 0; transform: translateY(20px); }
 
         .hero-title {
-            letter-spacing: 0.05em;
-            font-weight: 400;
+            letter-spacing: 0.02em;
+            font-weight: 500;
             line-height: 1.2;
-            font-size: clamp(1.8rem, 7vw, 3.5rem);
+            font-size: clamp(2.2rem, 8vw, 4rem);
             margin-top: 60px;
         }
 
@@ -73,53 +74,52 @@
             background: var(--glass);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.06);
         }
 
         .calendar-container {
-            max-width: 340px;
-            margin: 180px auto 100px;
-            padding: 45px 24px;
+            max-width: 360px;
+            margin: 140px auto 80px;
+            padding: 50px 30px;
         }
         .calendar-header {
             font-family: 'Do Hyeon', sans-serif;
-            font-size: 24px;
+            font-size: 28px;
             color: var(--text-main);
             text-align: left;
-            margin-bottom: 30px;
-            line-height: 1.5;
+            margin-bottom: 35px;
+            line-height: 1.4;
         }
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 12px;
+            gap: 14px;
             text-align: center;
-            font-size: 14px;
+            font-size: 16px;
         }
-        .calendar-day-label { color: #ccc; font-size: 11px; margin-bottom: 10px; text-transform: uppercase; font-family: 'Montserrat', sans-serif; }
-        .calendar-date { padding: 6px 0; position: relative; color: #999; font-family: 'Montserrat', sans-serif; }
-        .calendar-date.active { color: white; z-index: 1; }
+        .calendar-day-label { color: #888; font-size: 13px; margin-bottom: 12px; text-transform: uppercase; font-family: 'Montserrat', sans-serif; font-weight: 500; }
+        .calendar-date { padding: 8px 0; position: relative; color: #444; font-family: 'Montserrat', sans-serif; font-weight: 400; }
+        .calendar-date.active { color: white; z-index: 1; font-weight: 600; }
         .calendar-date.active::after {
             content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 32px; height: 32px; background-color: var(--calendar-accent); border-radius: 50%; z-index: -1;
+            width: 38px; height: 38px; background-color: var(--calendar-accent); border-radius: 50%; z-index: -1;
         }
 
         .calendar-info-text {
             font-family: 'Do Hyeon', sans-serif;
-            font-weight: 400;
-            font-size: 14px;
+            font-size: 16px;
             color: var(--text-main);
-            margin-top: 40px;
-            letter-spacing: 0.1em;
+            margin-top: 45px;
+            letter-spacing: 0.05em;
         }
 
         .countdown-value {
-            font-size: clamp(1.2rem, 5vw, 2.8rem);
-            letter-spacing: 0.05em;
-            font-weight: 200;
-            margin: 35px auto;
+            font-size: clamp(1.4rem, 6vw, 3rem);
+            letter-spacing: 0.02em;
+            font-weight: 400;
+            margin: 40px auto;
             display: block;
             text-align: center;
             width: 100%;
@@ -127,18 +127,19 @@
         }
 
         .pill-btn {
-            height: 50px;
-            padding: 0 32px;
+            height: 56px;
+            padding: 0 40px;
             border-radius: 999px;
             border: 1px solid rgba(0,0,0,0.15);
             background: white;
             font-family: 'Jua', sans-serif;
-            font-size: 15px;
-            letter-spacing: 0.05em;
+            font-size: 17px;
+            letter-spacing: 0.02em;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         .primary-btn { background: var(--text-main); color: white; border-color: var(--text-main); }
         
@@ -149,9 +150,9 @@
             transform: translateX(-50%) translateY(20px);
             background: #1a1a1a;
             color: white;
-            padding: 12px 24px;
+            padding: 14px 28px;
             border-radius: 999px;
-            font-size: 13px;
+            font-size: 15px;
             opacity: 0;
             pointer-events: none;
             transition: 0.4s;
@@ -159,9 +160,13 @@
         }
         #copy-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+        .program-item p { font-size: 17px; color: #333; }
+        .program-item h4 { font-size: 14px; }
+
         @media (max-width: 640px) {
-            .hero-title { letter-spacing: 0.05em; }
-            .calendar-container { margin: 120px auto 60px; }
+            .hero-title { letter-spacing: 0.02em; }
+            .calendar-container { margin: 100px auto 60px; }
+            body { font-size: 16px; }
         }
     </style>
 </head>
@@ -171,37 +176,37 @@
 
     <div id="loader">
         <div class="text-center">
-            <p class="mono text-[10px] tracking-[0.6em] mb-6 text-gray-400 uppercase">Initializing Wedding System</p>
-            <div class="w-48 h-[2px] bg-gray-200 relative overflow-hidden rounded-full mx-auto">
+            <p class="mono text-[12px] tracking-[0.4em] mb-6 text-gray-500 uppercase">SYSTEM LOADING</p>
+            <div class="w-48 h-[3px] bg-gray-200 relative overflow-hidden rounded-full mx-auto">
                 <div id="loader-progress" class="absolute inset-y-0 left-0 bg-blue-600 w-0 transition-all duration-300 ease-out rounded-full"></div>
             </div>
-            <p id="loader-status" class="mono text-[8px] mt-4 text-blue-600 opacity-50"></p>
+            <p id="loader-status" class="mono text-[10px] mt-4 text-blue-600"></p>
         </div>
     </div>
 
-    <nav class="fixed top-0 inset-x-0 z-50 py-8 px-8 flex justify-between items-center pointer-events-none">
-        <div class="eng text-[10px] tracking-widest font-light pointer-events-auto text-gray-400">W.E / 2026</div>
+    <nav class="fixed top-0 inset-x-0 z-50 py-6 px-8 flex justify-between items-center pointer-events-none">
+        <div class="eng text-[13px] tracking-widest font-medium pointer-events-auto text-gray-700">W.E / 2026</div>
         <div class="flex gap-6 pointer-events-auto">
-            <a href="#location" class="eng text-[10px] tracking-widest text-gray-400 hover:text-blue-600 transition-colors">MAP</a>
-            <a href="#rsvp" class="eng text-[10px] tracking-widest text-gray-400 hover:text-blue-600 transition-colors">RSVP</a>
-            <a href="#gift" class="eng text-[10px] tracking-widest text-gray-400 hover:text-blue-600 transition-colors">GIFT</a>
+            <a href="#location" class="eng text-[13px] tracking-widest text-gray-700 font-medium hover:text-blue-600 transition-colors">MAP</a>
+            <a href="#rsvp" class="eng text-[13px] tracking-widest text-gray-700 font-medium hover:text-blue-600 transition-colors">RSVP</a>
+            <a href="#gift" class="eng text-[13px] tracking-widest text-gray-700 font-medium hover:text-blue-600 transition-colors">GIFT</a>
         </div>
     </nav>
 
     <main class="max-w-screen-xl mx-auto">
         <!-- Hero Section -->
-        <section id="hero" class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-32">
+        <section id="hero" class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24">
             <div class="reveal">
-                <h1 class="hero-title bm-font flex flex-row items-center justify-center gap-3 sm:gap-14 mb-20 whitespace-nowrap">
+                <h1 class="hero-title bm-font flex flex-row items-center justify-center gap-4 sm:gap-14 mb-16 whitespace-nowrap">
                     <span>황세웅</span>
-                    <span class="text-gray-200 font-extralight eng text-2xl sm:text-6xl">&</span>
+                    <span class="text-gray-300 font-light eng text-3xl sm:text-6xl">&</span>
                     <span>허세정</span>
                 </h1>
                 
-                <div class="eng text-sm md:text-lg tracking-[0.45em] text-gray-400 leading-loose mb-16">
+                <div class="eng text-lg md:text-2xl tracking-[0.3em] text-gray-700 font-medium leading-relaxed mb-16">
                     2026. 06. 27. SAT.<br>
-                    <span class="text-gray-500">12:00 PM</span><br>
-                    MONACO SPACE, SEOUL
+                    <span class="text-blue-600 font-bold">12:00 PM</span><br>
+                    강남역 모나코스페이스
                 </div>
 
                 <div class="flex flex-wrap gap-4 justify-center mb-10">
@@ -213,33 +218,33 @@
                 <div class="calendar-container glass-panel reveal">
                     <div class="calendar-header">유월의<br>마지막 토요일.</div>
                     <div class="calendar-grid">
-                        <span class="calendar-day-label">S</span><span class="calendar-day-label">M</span><span class="calendar-day-label">T</span><span class="calendar-day-label">W</span><span class="calendar-day-label">T</span><span class="calendar-day-label">F</span><span class="calendar-day-label">S</span>
+                        <span class="calendar-day-label">일</span><span class="calendar-day-label">월</span><span class="calendar-day-label">화</span><span class="calendar-day-label">수</span><span class="calendar-day-label">목</span><span class="calendar-day-label">금</span><span class="calendar-day-label">토</span>
                         <span></span><span class="calendar-date">1</span><span class="calendar-date">2</span><span class="calendar-date">3</span><span class="calendar-date">4</span><span class="calendar-date">5</span><span class="calendar-date">6</span>
                         <span class="calendar-date">7</span><span class="calendar-date">8</span><span class="calendar-date">9</span><span class="calendar-date">10</span><span class="calendar-date">11</span><span class="calendar-date">12</span><span class="calendar-date">13</span>
                         <span class="calendar-date">14</span><span class="calendar-date">15</span><span class="calendar-date">16</span><span class="calendar-date">17</span><span class="calendar-date">18</span><span class="calendar-date">19</span><span class="calendar-date">20</span>
                         <span class="calendar-date">21</span><span class="calendar-date">22</span><span class="calendar-date">23</span><span class="calendar-date">24</span><span class="calendar-date">25</span><span class="calendar-date">26</span><span class="calendar-date active">27</span>
                         <span class="calendar-date">28</span><span class="calendar-date">29</span><span class="calendar-date">30</span><span></span><span></span><span></span><span></span>
                     </div>
-                    <p class="calendar-info-text">강남역 모나코 스페이스 12PM</p>
+                    <p class="calendar-info-text font-bold">강남역 모나코 스페이스 낮 12시</p>
                 </div>
             </div>
         </section>
 
         <!-- Countdown Section -->
-        <section class="py-32 px-4 sm:px-6">
-            <div class="max-w-xl mx-auto glass-panel p-6 sm:p-12 text-center reveal">
-                <h3 class="eng text-[10px] tracking-[0.6em] text-blue-600 uppercase">Wedding Celebration Countdown</h3>
-                <div id="countdown" class="countdown-value mono tabular-nums text-gray-800">00:00:00:00.00</div>
-                <p class="eng text-sm md:text-base text-gray-500 font-light tracking-[0.2em] mb-2">Two Souls, One Canvas.</p>
+        <section class="py-24 px-4 sm:px-6">
+            <div class="max-w-xl mx-auto glass-panel p-8 sm:p-14 text-center reveal">
+                <h3 class="eng text-[12px] tracking-[0.4em] text-blue-600 uppercase font-bold mb-4">Wedding Celebration Countdown</h3>
+                <div id="countdown" class="countdown-value mono tabular-nums text-gray-900">00:00:00:00.00</div>
+                <p class="text-lg text-gray-600 font-medium tracking-[0.1em] mb-2 eng">Two Souls, One Canvas.</p>
                 
-                <div class="grid grid-cols-2 border-t border-black/5 pt-10 mt-8">
-                    <div class="text-center">
-                        <p class="eng text-[9px] text-gray-400 mb-2 uppercase tracking-widest">Status</p>
-                        <p class="eng text-xs text-blue-600 font-bold tracking-widest">STABLE</p>
+                <div class="grid grid-cols-2 border-t border-black/10 pt-10 mt-8">
+                    <div class="text-center border-r border-black/5">
+                        <p class="eng text-[11px] text-gray-500 mb-2 uppercase tracking-widest">Status</p>
+                        <p class="eng text-sm text-blue-600 font-bold tracking-widest">STABLE</p>
                     </div>
                     <div class="text-center">
-                        <p class="eng text-[9px] text-gray-400 mb-2 uppercase tracking-widest">Protocol</p>
-                        <p class="eng text-xs text-blue-600 font-bold tracking-widest">MARRIAGE_1.0</p>
+                        <p class="eng text-[11px] text-gray-500 mb-2 uppercase tracking-widest">Protocol</p>
+                        <p class="eng text-sm text-blue-600 font-bold tracking-widest">MARRIAGE_1.0</p>
                     </div>
                 </div>
             </div>
@@ -248,37 +253,37 @@
         <!-- Program Section -->
         <section id="story" class="py-32 px-6">
             <div class="max-w-screen-lg mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-                <div class="reveal glass-panel p-8 sm:p-10 md:bg-white/40">
-                    <span class="eng text-[10px] tracking-[0.5em] text-gray-400 mb-8 block uppercase">Program</span>
-                    <h2 class="text-3xl md:text-5xl bm-font leading-snug mb-10">예식 대신 작은 전시와<br>공연을 준비했습니다.</h2>
-                    <p class="text-gray-600 leading-relaxed font-normal mb-10 text-sm md:text-base break-keep">
+                <div class="reveal glass-panel p-10 sm:p-12">
+                    <span class="eng text-[12px] tracking-[0.4em] text-gray-500 mb-8 block uppercase font-bold">Program</span>
+                    <h2 class="text-3xl md:text-4xl bm-font leading-snug mb-10">예식 대신 작은 전시와<br>공연을 준비했습니다.</h2>
+                    <p class="text-gray-800 leading-relaxed font-medium mb-12 text-lg break-keep">
                         정형화된 예식의 틀을 벗어나 귀한 분들을 모시고<br>
                         저희의 이야기를 공유하며 식사하는 자리를 마련했습니다.<br>
                         따뜻한 오찬과 함께 감미로운 공연을 즐겨주시기 바랍니다.
                     </p>
                     
-                    <div class="space-y-10 relative">
-                        <div class="w-[1px] bg-gray-200 absolute left-0 top-1 bottom-1"></div>
-                        <div class="relative pl-8">
-                            <div class="absolute -left-[2.5px] top-1.5 w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
-                            <h4 class="eng text-xs font-bold tracking-widest mb-2 text-blue-600">Curated Love</h4>
-                            <p class="text-gray-700 text-sm font-light tracking-wide break-keep">두 사람의 이야기가 담긴 전시</p>
+                    <div class="space-y-12 relative">
+                        <div class="w-[2px] bg-gray-100 absolute left-0 top-1 bottom-1"></div>
+                        <div class="relative pl-10 program-item">
+                            <div class="absolute -left-[4px] top-1.5 w-2 h-2 bg-blue-600 rounded-full"></div>
+                            <h4 class="eng font-bold tracking-widest mb-3 text-blue-600 uppercase">Curated Love</h4>
+                            <p class="font-medium tracking-wide break-keep">두 사람의 이야기가 담긴 전시</p>
                         </div>
-                        <div class="relative pl-8">
-                            <div class="absolute -left-[2.5px] top-1.5 w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
-                            <h4 class="eng text-xs font-bold tracking-widest mb-2 text-blue-600">Luncheon Party</h4>
-                            <p class="text-gray-700 text-sm font-light tracking-wide break-keep">정성을 담아 준비한 오찬 식사</p>
+                        <div class="relative pl-10 program-item">
+                            <div class="absolute -left-[4px] top-1.5 w-2 h-2 bg-blue-600 rounded-full"></div>
+                            <h4 class="eng font-bold tracking-widest mb-3 text-blue-600 uppercase">Luncheon Party</h4>
+                            <p class="font-medium tracking-wide break-keep">정성을 담아 준비한 오찬 식사</p>
                         </div>
-                        <div class="relative pl-8">
-                            <div class="absolute -left-[2.5px] top-1.5 w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
-                            <h4 class="eng text-xs font-bold tracking-widest mb-2 text-blue-600">Popera Performance</h4>
-                            <p class="text-gray-700 text-sm font-light tracking-wide break-keep">혼성듀오가 선사하는 감미로운 팝페라 공연</p>
+                        <div class="relative pl-10 program-item">
+                            <div class="absolute -left-[4px] top-1.5 w-2 h-2 bg-blue-600 rounded-full"></div>
+                            <h4 class="eng font-bold tracking-widest mb-3 text-blue-600 uppercase">Popera Performance</h4>
+                            <p class="font-medium tracking-wide break-keep">혼성듀오가 선사하는 팝페라 공연</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="reveal min-w-0 w-full">
-                    <div class="swiper mySwiper rounded-lg shadow-xl overflow-hidden glass-panel aspect-[3/4]">
+                    <div class="swiper mySwiper rounded-2xl shadow-2xl overflow-hidden glass-panel aspect-[3/4]">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide"><img src="./images/1.jpg" alt="Gallery 1" class="w-full h-full object-cover"></div>
                             <div class="swiper-slide"><img src="./images/2.jpg" alt="Gallery 2" class="w-full h-full object-cover"></div>
@@ -287,25 +292,32 @@
                             <div class="swiper-slide"><img src="./images/5.jpg" alt="Gallery 5" class="w-full h-full object-cover"></div>
                         </div>
                         <div class="swiper-pagination"></div>
-                        <div class="swiper-button-next" style="color: white; transform: scale(0.7); opacity: 0.8;"></div>
-                        <div class="swiper-button-prev" style="color: white; transform: scale(0.7); opacity: 0.8;"></div>
                     </div>
+                    <p class="text-center mt-6 text-gray-500 text-sm font-medium">옆으로 넘겨서 사진을 확인하세요</p>
                 </div>
             </div>
         </section>
 
         <!-- Family Section -->
-        <section class="py-32 px-6 border-y border-gray-100 bg-white/50 backdrop-blur-sm">
+        <section class="py-32 px-6 border-y border-gray-100 bg-white/60 backdrop-blur-md">
             <div class="max-w-screen-sm mx-auto text-center reveal">
-                <span class="eng text-[10px] tracking-[0.5em] text-gray-400 mb-12 block uppercase">Family</span>
-                <div class="flex flex-col md:flex-row justify-center gap-12 md:gap-24 text-lg font-light leading-loose">
+                <span class="eng text-[12px] tracking-[0.4em] text-gray-500 mb-12 block uppercase font-bold">Family</span>
+                <div class="flex flex-col md:flex-row justify-center gap-14 md:gap-24 text-xl font-medium leading-loose">
                     <div class="bm-soft-font">
-                        <p class="text-xs text-gray-300 eng mb-4 tracking-widest">GROOM</p>
-                        황종범 · 김서경 <span class="text-xs text-gray-400 mx-2 font-normal">의 차남</span> <strong class="font-normal text-blue-600">세웅</strong>
+                        <p class="text-sm text-gray-400 eng mb-6 tracking-widest font-bold">GROOM</p>
+                        <div class="space-y-1">
+                            <span class="text-gray-900">황종범 · 김서경</span>
+                            <span class="text-base text-gray-500 mx-2">의 차남</span>
+                            <strong class="text-2xl text-blue-700 font-bold">세웅</strong>
+                        </div>
                     </div>
                     <div class="bm-soft-font">
-                        <p class="text-xs text-gray-300 eng mb-4 tracking-widest">BRIDE</p>
-                        허재구 · 홍수옥 <span class="text-xs text-gray-400 mx-2 font-normal">의 장녀</span> <strong class="font-normal text-blue-600">세정</strong>
+                        <p class="text-sm text-gray-400 eng mb-6 tracking-widest font-bold">BRIDE</p>
+                        <div class="space-y-1">
+                            <span class="text-gray-900">허재구 · 홍수옥</span>
+                            <span class="text-base text-gray-500 mx-2">의 장녀</span>
+                            <strong class="text-2xl text-blue-700 font-bold">세정</strong>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -314,81 +326,85 @@
         <!-- Location Section -->
         <section id="location" class="py-32 px-6">
             <div class="max-w-screen-md mx-auto text-center reveal">
-                <span class="eng text-[10px] tracking-[0.5em] text-gray-400 mb-8 block uppercase">Location</span>
-                <h3 class="text-2xl bm-font mb-4">모나코 스페이스</h3>
-                <p class="text-gray-500 text-xs md:text-sm mb-12 tracking-wider leading-relaxed break-keep">서울 서초구 서초대로 397 부띠크모나코 B1<br>강남역 9번 출구에서 200m (도보 3분)</p>
-                <div class="h-80 w-full mb-12 overflow-hidden glass-panel relative" id="map-container">
+                <span class="eng text-[12px] tracking-[0.4em] text-gray-500 mb-8 block uppercase font-bold">Location</span>
+                <h3 class="text-3xl bm-font mb-6">모나코 스페이스</h3>
+                <p class="text-gray-700 text-lg mb-12 tracking-wide leading-relaxed break-keep font-medium">
+                    서울 서초구 서초대로 397 부띠크모나코 B1<br>
+                    <span class="text-blue-600 font-bold underline underline-offset-4">강남역 9번 출구에서 200m (도보 3분)</span>
+                </p>
+                <div class="h-96 w-full mb-12 overflow-hidden glass-panel relative shadow-lg" id="map-container">
                     <iframe src="https://www.google.com/maps?q=%EB%AA%A8%EB%82%98%EC%BD%94%20%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4%20%EC%84%9C%EC%9A%B8&z=16&output=embed" class="w-full h-full border-0" loading="lazy"></iframe>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <a href="https://naver.me/FIfsIZIn" target="_blank" class="pill-btn eng text-[12px]">NAVER MAP</a>
-                    <a href="kakaomap://search?q=모나코스페이스&p=37.497551,127.025686" onclick="if(!/(iPhone|iPad|iPod|Android)/i.test(navigator.userAgent)){ window.open('https://map.kakao.com/link/map/모나코스페이스,37.497551,127.025686'); return false; }" class="pill-btn eng text-[12px]">KAKAO MAP</a>
-                    <a href="tmap://search?name=모나코스페이스" onclick="if(!/(iPhone|iPad|iPod|Android)/i.test(navigator.userAgent)){ window.open('https://tmap.life/3ccb507f'); return false; }" class="pill-btn eng text-[12px]">TMAP</a>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <a href="https://naver.me/FIfsIZIn" target="_blank" class="pill-btn eng">NAVER MAP</a>
+                    <a href="kakaomap://search?q=모나코스페이스&p=37.497551,127.025686" class="pill-btn eng">KAKAO MAP</a>
+                    <a href="tmap://search?name=모나코스페이스" class="pill-btn eng">TMAP</a>
                 </div>
             </div>
         </section>
 
         <!-- RSVP Section -->
-        <section id="rsvp" class="py-32 px-6 border-t border-gray-100 bg-white/50 backdrop-blur-sm">
-            <div class="max-w-md mx-auto text-center reveal glass-panel p-10">
-                <span class="eng text-[10px] tracking-[0.5em] text-gray-400 mb-8 block uppercase">RSVP</span>
-                <h3 class="text-2xl bm-font mb-6">참석 여부 전달</h3>
-                <p class="text-gray-500 text-sm mb-10 leading-relaxed font-light break-keep">
-                    축하의 마음으로 함께해주실 귀빈 여러분께 감사드립니다.<br>
-                    정성껏 준비한 오찬과 공연을 위해<br>
-                    참석 여부를 미리 알려주시면 대단히 감사하겠습니다.
+        <section id="rsvp" class="py-32 px-6 border-t border-gray-100 bg-white/60 backdrop-blur-md">
+            <div class="max-w-md mx-auto text-center reveal glass-panel p-12">
+                <span class="eng text-[12px] tracking-[0.4em] text-gray-500 mb-8 block uppercase font-bold">RSVP</span>
+                <h3 class="text-3xl bm-font mb-8">참석 여부 전달</h3>
+                <p class="text-gray-800 text-lg mb-12 leading-relaxed font-medium break-keep">
+                    축하를 위해 걸음해주시는 귀한 발걸음 잊지 않겠습니다.<br><br>
+                    참석 여부를 알려주시면 정성껏 모시겠습니다.
                 </p>
-                <a href="https://forms.gle/eMboqAp4i9Rjdm5FA" target="_blank" class="pill-btn primary-btn px-10">
+                <a href="https://forms.gle/eMboqAp4i9Rjdm5FA" target="_blank" class="pill-btn primary-btn px-12 text-lg h-16 w-full">
                     참석 의사 전달하기
                 </a>
             </div>
         </section>
 
         <!-- Gift Section -->
-        <section id="gift" class="py-32 px-6 bg-gray-50/10 backdrop-blur-md">
+        <section id="gift" class="py-32 px-6 bg-gray-50/20 backdrop-blur-md">
             <div class="max-w-md mx-auto reveal">
                 <div class="text-center mb-16">
-                    <span class="eng text-[10px] tracking-[0.5em] text-gray-400 mb-8 block uppercase">Registry</span>
-                    <h3 class="text-xl bm-font">마음을 전하실 곳</h3>
+                    <span class="eng text-[12px] tracking-[0.4em] text-gray-500 mb-8 block uppercase font-bold">Registry</span>
+                    <h3 class="text-2xl bm-font">마음을 전하실 곳</h3>
                 </div>
                 <div class="space-y-6">
-                    <div class="glass-panel p-8 flex justify-between items-center">
-                        <div>
-                            <p class="eng text-[9px] text-gray-400 mb-2 uppercase tracking-widest">Groom Side</p>
-                            <p class="text-sm font-light">토스뱅크 1000-3101-7029 황세웅</p>
+                    <div class="glass-panel p-10 flex flex-col sm:flex-row justify-between items-center gap-6">
+                        <div class="text-center sm:text-left">
+                            <p class="eng text-[11px] text-gray-500 mb-2 uppercase tracking-widest font-bold">Groom Side</p>
+                            <p class="text-lg font-bold text-gray-900">토스뱅크 1000-3101-7029</p>
+                            <p class="text-base text-gray-600 font-medium mt-1">예금주: 황세웅</p>
                         </div>
-                        <button onclick="copyText('1000-3101-7029')" class="eng text-xs text-blue-600 font-bold border-b border-blue-600">COPY</button>
+                        <button onclick="copyText('1000-3101-7029')" class="eng text-sm text-blue-600 font-bold border-b-2 border-blue-600 pb-1">COPY</button>
                     </div>
-                    <div class="glass-panel p-8 flex justify-between items-center">
-                        <div>
-                            <p class="eng text-[9px] text-gray-400 mb-2 uppercase tracking-widest">Bride Side</p>
-                            <p class="text-sm font-light">신한은행 110-223-140846 허세정</p>
+                    <div class="glass-panel p-10 flex flex-col sm:flex-row justify-between items-center gap-6">
+                        <div class="text-center sm:text-left">
+                            <p class="eng text-[11px] text-gray-500 mb-2 uppercase tracking-widest font-bold">Bride Side</p>
+                            <p class="text-lg font-bold text-gray-900">신한은행 110-223-140846</p>
+                            <p class="text-base text-gray-600 font-medium mt-1">예금주: 허세정</p>
                         </div>
-                        <button onclick="copyText('110-223-140846')" class="eng text-xs text-blue-600 font-bold border-b border-blue-600">COPY</button>
+                        <button onclick="copyText('110-223-140846')" class="eng text-sm text-blue-600 font-bold border-b-2 border-blue-600 pb-1">COPY</button>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-20 text-center">
-        <p class="eng text-[9px] tracking-[0.6em] text-gray-300 uppercase font-light">Optimized & Curated by Sewoong & Sejeong</p>
+    <footer class="py-24 text-center">
+        <p class="eng text-[11px] tracking-[0.4em] text-gray-400 uppercase font-medium">Optimized & Curated by Sewoong & Sejeong</p>
     </footer>
 
     <!-- RSVP 팝업 -->
-    <div id="rsvp-popup" class="fixed bottom-0 left-0 right-0 z-[9000] p-4 sm:p-6 transition-all duration-700 ease-out transform translate-y-[120%] opacity-0 pointer-events-none flex justify-center">
-        <div class="glass-panel w-full max-w-sm p-8 relative pointer-events-auto shadow-2xl bg-white/95">
-            <button id="close-rsvp-popup" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-800 transition-colors rounded-full hover:bg-gray-100">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    <div id="rsvp-popup" class="fixed bottom-0 left-0 right-0 z-[9000] p-4 sm:p-8 transition-all duration-700 ease-out transform translate-y-[120%] opacity-0 pointer-events-none flex justify-center">
+        <div class="glass-panel w-full max-w-sm p-10 relative pointer-events-auto shadow-2xl bg-white/98">
+            <button id="close-rsvp-popup" class="absolute top-5 right-5 p-3 text-gray-400 hover:text-gray-800 transition-colors rounded-full hover:bg-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            <div class="text-center mt-2">
-                <span class="eng text-[10px] tracking-[0.5em] text-gray-400 mb-3 block uppercase">RSVP</span>
-                <h3 class="text-xl bm-font mb-4">참석 여부 전달</h3>
-                <p class="text-gray-500 text-xs mb-6 leading-relaxed font-light break-keep">
+            <div class="text-center mt-4">
+                <span class="eng text-[11px] tracking-[0.4em] text-gray-500 mb-4 block uppercase font-bold">RSVP</span>
+                <h3 class="text-2xl bm-font mb-6">참석 여부 전달</h3>
+                <p class="text-gray-700 text-base mb-8 leading-relaxed font-medium break-keep">
                     축하를 위해 걸음해주시는 귀한 발걸음 잊지 않겠습니다.<br>
                     참석 여부를 알려주시면 정성껏 모시겠습니다.
                 </p>
-                <a href="https://forms.gle/eMboqAp4i9Rjdm5FA" target="_blank" class="pill-btn primary-btn w-full text-sm h-12">
+                <a href="https://forms.gle/eMboqAp4i9Rjdm5FA" target="_blank" class="pill-btn primary-btn w-full text-lg h-14">
                     참석 의사 전달하기
                 </a>
             </div>
@@ -441,11 +457,11 @@
         function initCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            dots = Array.from({length: 60}, () => ({
+            dots = Array.from({length: 40}, () => ({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                vx: (Math.random() - 0.5) * 0.3,
-                vy: (Math.random() - 0.5) * 0.3
+                vx: (Math.random() - 0.5) * 0.2,
+                vy: (Math.random() - 0.5) * 0.2
             }));
         }
 
@@ -459,27 +475,20 @@
                 if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
                 if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
                 
-                if (mouse.x) {
-                    const dx = mouse.x - dot.x; 
-                    const dy = mouse.y - dot.y;
-                    const dist = Math.hypot(dx, dy);
-                    if (dist < 150) { dot.x -= dx * 0.01; dot.y -= dy * 0.01; }
-                }
-                
                 ctx.beginPath(); 
-                ctx.arc(dot.x, dot.y, 1.2, 0, Math.PI * 2); 
+                ctx.arc(dot.x, dot.y, 1.5, 0, Math.PI * 2); 
                 ctx.fillStyle = '#0047FF'; 
                 ctx.fill();
                 
                 for (let j = i + 1; j < dots.length; j++) {
                     const dot2 = dots[j]; 
                     const dist = Math.hypot(dot.x - dot2.x, dot.y - dot2.y);
-                    if (dist < 150) {
+                    if (dist < 180) {
                         ctx.beginPath(); 
                         ctx.moveTo(dot.x, dot.y); 
                         ctx.lineTo(dot2.x, dot2.y);
-                        ctx.strokeStyle = `rgba(0, 71, 255, ${0.15 * (1 - dist / 150)})`; 
-                        ctx.lineWidth = 0.5; 
+                        ctx.strokeStyle = `rgba(0, 71, 255, ${0.12 * (1 - dist / 180)})`; 
+                        ctx.lineWidth = 0.8; 
                         ctx.stroke();
                     }
                 }
@@ -522,8 +531,7 @@
                     loop: true,
                     spaceBetween: 10,
                     pagination: { el: ".swiper-pagination", clickable: true },
-                    navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-                    autoplay: { delay: 3500, disableOnInteraction: false }
+                    autoplay: { delay: 4000, disableOnInteraction: false }
                 });
             }
         }
@@ -559,7 +567,7 @@
                 return;
             }
             if (ua.indexOf('instagram') > -1 || ua.indexOf('line') > -1) {
-                showToast('현재 화면에서는 저장이 제한됩니다. Safari나 Chrome으로 열어주세요.');
+                showToast('Safari나 Chrome으로 열어주세요.');
                 return;
             }
 
@@ -590,7 +598,7 @@
             }
         }, { passive: true });
 
-        closeRsvpPopupBtn.addEventListener('click', () => {
+            closeRsvpPopupBtn.addEventListener('click', () => {
             rsvpPopup.classList.remove('translate-y-0', 'opacity-100');
             rsvpPopup.classList.add('translate-y-[120%]', 'opacity-0');
             popupClosed = true;
