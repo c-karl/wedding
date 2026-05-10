@@ -141,6 +141,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            cursor: pointer;
         }
         .primary-btn { background: var(--text-main); color: white; border-color: var(--text-main); }
         
@@ -153,7 +154,6 @@
         }
         .parking-btn:active {
             transform: scale(0.98);
-            background-color: #E6BF00;
         }
 
         #copy-toast {
@@ -223,8 +223,8 @@
                 </div>
 
                 <div class="flex flex-wrap gap-4 justify-center mb-10">
-                    <button id="save-calendar-hero" class="pill-btn primary-btn">캘린더 저장</button>
-                    <a href="#location" class="pill-btn primary-btn">오시는 길</a>
+                    <button id="save-calendar-hero" class="pill-btn primary-btn relative z-10">캘린더 저장</button>
+                    <a href="#location" class="pill-btn primary-btn relative z-10">오시는 길</a>
                 </div>
 
                 <!-- 캘린더 섹션 -->
@@ -343,20 +343,20 @@
                 <h3 class="text-3xl bm-font mb-6">모나코 스페이스</h3>
                 <p class="text-gray-700 text-lg mb-4 tracking-wide leading-relaxed break-keep font-medium">
                     서울 서초구 서초대로 397 부띠크모나코 B1<br>
-                    <span class="text-blue-600 font-bold underline underline-offset-4">강남역 9번 출구에서 200m (도보 3분)</span>
+                    <span class="text-blue-600 font-bold underline underline-offset-4 font-sans">강남역 9번 출구에서 200m (도보 3분)</span>
                 </p>
                 <div class="flex flex-col items-center gap-4 mb-12">
                     <p class="text-gray-900 font-bold text-lg break-keep">주차: 모나코스페이스(부띠크모나코 빌딩) 지하주차장</p>
-                    <button id="open-parking-guide" class="pill-btn h-10 px-10 text-sm parking-btn">주차안내</button>
+                    <button id="open-parking-guide" class="pill-btn h-10 px-10 text-sm parking-btn relative z-10">주차안내</button>
                 </div>
 
                 <div class="h-96 w-full mb-12 overflow-hidden glass-panel relative shadow-lg" id="map-container">
                     <iframe src="https://www.google.com/maps?q=%EB%AA%A8%EB%82%98%EC%BD%94%20%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4%20%EC%84%9C%EC%9A%B8&z=16&output=embed" class="w-full h-full border-0" loading="lazy"></iframe>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <a href="https://naver.me/FIfsIZIn" target="_blank" class="pill-btn eng">NAVER MAP</a>
-                    <a href="kakaomap://search?q=모나코스페이스&p=37.497551,127.025686" class="pill-btn eng">KAKAO MAP</a>
-                    <a href="tmap://search?name=모나코스페이스" class="pill-btn eng">TMAP</a>
+                    <a href="https://naver.me/FIfsIZIn" target="_blank" class="pill-btn eng relative z-10">NAVER MAP</a>
+                    <a href="kakaomap://search?q=모나코스페이스&p=37.497551,127.025686" class="pill-btn eng relative z-10">KAKAO MAP</a>
+                    <a href="tmap://search?name=모나코스페이스" class="pill-btn eng relative z-10">TMAP</a>
                 </div>
             </div>
         </section>
@@ -370,7 +370,7 @@
                     축하를 위해 걸음해주시는 귀한 발걸음 잊지 않겠습니다.<br><br>
                     참석 여부를 알려주시면 정성껏 모시겠습니다.
                 </p>
-                <a href="https://forms.gle/eMboqAp4i9Rjdm5FA" target="_blank" class="pill-btn primary-btn px-12 text-lg h-16 w-full">
+                <a href="https://forms.gle/eMboqAp4i9Rjdm5FA" target="_blank" class="pill-btn primary-btn px-12 text-lg h-16 w-full relative z-10">
                     참석 의사 전달하기
                 </a>
             </div>
@@ -390,7 +390,7 @@
                             <p class="text-lg font-bold text-gray-900">토스뱅크 1000-3101-7029</p>
                             <p class="text-base text-gray-600 font-medium mt-1">예금주: 황세웅</p>
                         </div>
-                        <button onclick="copyText('1000-3101-7029')" class="eng text-sm text-blue-600 font-bold border-b-2 border-blue-600 pb-1">COPY</button>
+                        <button onclick="copyText('1000-3101-7029')" class="eng text-sm text-blue-600 font-bold border-b-2 border-blue-600 pb-1 relative z-10">COPY</button>
                     </div>
                     <div class="glass-panel p-10 flex flex-col sm:flex-row justify-between items-center gap-6">
                         <div class="text-center sm:text-left">
@@ -398,7 +398,7 @@
                             <p class="text-lg font-bold text-gray-900">신한은행 110-223-140846</p>
                             <p class="text-base text-gray-600 font-medium mt-1">예금주: 허세정</p>
                         </div>
-                        <button onclick="copyText('110-223-140846')" class="eng text-sm text-blue-600 font-bold border-b-2 border-blue-600 pb-1">COPY</button>
+                        <button onclick="copyText('110-223-140846')" class="eng text-sm text-blue-600 font-bold border-b-2 border-blue-600 pb-1 relative z-10">COPY</button>
                     </div>
                 </div>
             </div>
@@ -409,20 +409,20 @@
         <p class="eng text-[11px] tracking-[0.4em] text-gray-400 uppercase font-medium">Optimized & Curated by Sewoong & Sejeong</p>
     </footer>
 
-    <!-- RSVP 팝업 (크기 축소 및 너비 제한) -->
-    <div id="rsvp-popup" class="fixed bottom-0 left-0 right-0 z-[9000] p-4 sm:p-6 transition-all duration-700 ease-out transform translate-y-[120%] opacity-0 pointer-events-none flex justify-center">
-        <div class="glass-panel w-full max-w-xs p-6 sm:p-8 relative pointer-events-auto shadow-2xl bg-white/98">
-            <button id="close-rsvp-popup" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-800 transition-colors rounded-full hover:bg-gray-100">
+    <!-- RSVP 팝업 (크기 대폭 축소) -->
+    <div id="rsvp-popup" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[9000] w-[calc(100%-3rem)] max-w-[280px]">
+        <div class="glass-panel p-6 relative shadow-2xl bg-white/98 border-gray-200 border">
+            <button id="close-rsvp-popup" class="absolute top-3 right-3 p-2 text-gray-400 hover:text-gray-800 transition-colors rounded-full hover:bg-gray-100">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            <div class="text-center mt-2">
-                <span class="eng text-[11px] tracking-[0.4em] text-gray-500 mb-3 block uppercase font-bold">RSVP</span>
-                <h3 class="text-xl bm-font mb-4 font-bold">참석 여부 전달</h3>
-                <p class="text-gray-700 text-sm mb-6 leading-relaxed font-medium break-keep">
+            <div class="text-center">
+                <span class="eng text-[10px] tracking-[0.4em] text-gray-500 mb-2 block uppercase font-bold">RSVP</span>
+                <h3 class="text-lg bm-font mb-3 font-bold">참석 여부 전달</h3>
+                <p class="text-gray-700 text-xs mb-5 leading-relaxed font-medium break-keep">
                     축하를 위해 걸음해주시는<br>귀한 발걸음 잊지 않겠습니다.<br>
-                    참석 여부를 알려주시면 정성껏 모시겠습니다.
+                    참석 여부를 알려주시면<br>정성껏 모시겠습니다.
                 </p>
-                <a href="https://forms.gle/eMboqAp4i9Rjdm5FA" target="_blank" class="pill-btn primary-btn w-full text-base h-12">
+                <a href="https://forms.gle/eMboqAp4i9Rjdm5FA" target="_blank" class="pill-btn primary-btn w-full text-sm h-11">
                     참석 의사 전달하기
                 </a>
             </div>
@@ -430,16 +430,16 @@
     </div>
 
     <!-- 주차 안내 팝업 -->
-    <div id="parking-popup" class="fixed inset-0 z-[9001] p-4 sm:p-8 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500 ease-out">
-        <div class="absolute inset-0 bg-black/20 backdrop-blur-sm" id="parking-popup-overlay"></div>
-        <div class="glass-panel w-full max-w-md p-8 sm:p-10 relative pointer-events-auto shadow-2xl bg-white/98 transform scale-95 transition-transform duration-500">
-            <button id="close-parking-popup-btn-x" class="absolute top-5 right-5 p-3 text-gray-400 hover:text-gray-800 transition-colors rounded-full hover:bg-gray-100">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    <div id="parking-popup" class="hidden fixed inset-0 z-[9001] items-center justify-center p-6">
+        <div class="absolute inset-0 bg-black/30 backdrop-blur-sm" id="parking-popup-overlay"></div>
+        <div class="glass-panel w-full max-w-[300px] p-8 relative shadow-2xl bg-white/98 transform border-gray-200 border">
+            <button id="close-parking-popup-btn-x" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-800 transition-colors rounded-full hover:bg-gray-100">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            <div class="text-center mt-4">
-                <span class="eng text-[11px] tracking-[0.4em] text-gray-500 mb-4 block uppercase font-bold">Parking Guide</span>
-                <h3 class="text-2xl bm-font mb-8 text-blue-600">주차 상세 안내</h3>
-                <div class="text-left space-y-6 text-gray-800 font-medium leading-relaxed break-keep text-base">
+            <div class="text-center mt-2">
+                <span class="eng text-[10px] tracking-[0.4em] text-gray-500 mb-3 block uppercase font-bold">Parking Guide</span>
+                <h3 class="text-xl bm-font mb-6 text-blue-600">주차 상세 안내</h3>
+                <div class="text-left space-y-5 text-gray-800 font-medium leading-relaxed break-keep text-sm">
                     <p>
                         지하주차장 1~5층 모두 이용 가능하며, 지하 3~5층 주차 시, 엘리베이터 앞 스크린에서 <span class="font-bold text-blue-600">'관리실 호출'</span> 후 "모나코스페이스 방문"이라 말씀해 주세요.
                     </p>
@@ -448,7 +448,7 @@
                         주차 정산은 돌아가실 때 축의대에 말씀해 주시면 처리해 드립니다.
                     </p>
                 </div>
-                <button id="close-parking-popup-btn-ok" class="pill-btn primary-btn w-full text-lg h-14 mt-10">확인</button>
+                <button id="close-parking-popup-btn-ok" class="pill-btn primary-btn w-full text-base h-12 mt-8">확인</button>
             </div>
         </div>
     </div>
@@ -464,7 +464,6 @@
 
         window.onload = () => {
             window.scrollTo(0, 0); 
-            
             const bar = document.getElementById('loader-progress');
             const statusText = document.getElementById('loader-status');
             const logs = ["compiling_logic", "optimizing_data", "loading_performance", "system_ready"];
@@ -477,15 +476,15 @@
                     idx++;
                 } else {
                     clearInterval(timer);
-                    gsap.to("#loader", { opacity: 0, duration: 1, onComplete: () => {
+                    gsap.to("#loader", { opacity: 0, duration: 0.8, onComplete: () => {
                         document.getElementById('loader').style.display = 'none';
+                        systemReady = true;
                         initAnimations();
                         initSwiper();
-                        systemReady = true;
-                        initPopups(); // 로딩 후 팝업 초기화
+                        initPopups(); 
                     }});
                 }
-            }, 250);
+            }, 200);
 
             initCanvas();
             drawCanvas();
@@ -513,12 +512,10 @@
                 dot.x += dot.vx; dot.y += dot.vy;
                 if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
                 if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
-                
                 ctx.beginPath(); 
                 ctx.arc(dot.x, dot.y, 1.5, 0, Math.PI * 2); 
                 ctx.fillStyle = '#0047FF'; 
                 ctx.fill();
-                
                 for (let j = i + 1; j < dots.length; j++) {
                     const dot2 = dots[j]; 
                     const dist = Math.hypot(dot.x - dot2.x, dot.y - dot2.y);
@@ -538,7 +535,6 @@
         function updateCountdown() {
             const target = new Date('2026-06-27T12:00:00+09:00').getTime();
             const countdownEl = document.getElementById('countdown');
-            
             function tick() {
                 const now = Date.now();
                 const diff = target - now;
@@ -560,7 +556,7 @@
         function initAnimations() {
             gsap.registerPlugin(ScrollTrigger);
             gsap.utils.toArray('.reveal').forEach(el => {
-                gsap.to(el, { opacity: 1, y: 0, duration: 1.2, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 90%" } });
+                gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 90%" } });
             });
         }
 
@@ -605,52 +601,52 @@
             let popupShown = false;
             let popupClosed = false;
 
-            // RSVP 팝업 표시 로직
             window.addEventListener('scroll', () => {
                 if (popupClosed || !systemReady) return;
                 if (window.scrollY > window.innerHeight * 0.8) {
                     if (!popupShown) {
-                        rsvpPopup.classList.remove('translate-y-[120%]', 'opacity-0', 'pointer-events-none');
-                        rsvpPopup.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+                        rsvpPopup.style.display = 'block';
+                        gsap.fromTo(rsvpPopup, { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 });
                         popupShown = true;
                     }
                 }
             }, { passive: true });
 
-            closeRsvpPopupBtn.onclick = () => {
-                rsvpPopup.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
-                rsvpPopup.classList.add('translate-y-[120%]', 'opacity-0', 'pointer-events-none');
-                popupClosed = true;
-            };
+            closeRsvpPopupBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                gsap.to(rsvpPopup, { y: 100, opacity: 0, duration: 0.4, onComplete: () => {
+                    rsvpPopup.style.display = 'none';
+                    popupClosed = true;
+                }});
+            });
 
-            // 주차 안내 팝업 로직
             const parkingPopup = document.getElementById('parking-popup');
             const openParkingBtn = document.getElementById('open-parking-guide');
             const parkingOverlay = document.getElementById('parking-popup-overlay');
             const closeParkingX = document.getElementById('close-parking-popup-btn-x');
             const closeParkingOk = document.getElementById('close-parking-popup-btn-ok');
 
-            const showParking = () => {
-                parkingPopup.classList.remove('opacity-0', 'pointer-events-none');
-                parkingPopup.classList.add('opacity-100', 'pointer-events-auto');
-                parkingPopup.querySelector('.glass-panel').classList.remove('scale-95');
-                parkingPopup.querySelector('.glass-panel').classList.add('scale-100');
+            const showParking = (e) => {
+                if(e) e.preventDefault();
+                parkingPopup.style.display = 'flex';
+                gsap.fromTo(parkingPopup.querySelector('.glass-panel'), { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4 });
             };
 
-            const hideParking = () => {
-                parkingPopup.classList.remove('opacity-100', 'pointer-events-auto');
-                parkingPopup.classList.add('opacity-0', 'pointer-events-none');
-                parkingPopup.querySelector('.glass-panel').classList.remove('scale-100');
-                parkingPopup.querySelector('.glass-panel').classList.add('scale-95');
+            const hideParking = (e) => {
+                if(e) e.preventDefault();
+                gsap.to(parkingPopup.querySelector('.glass-panel'), { scale: 0.9, opacity: 0, duration: 0.3, onComplete: () => {
+                    parkingPopup.style.display = 'none';
+                }});
             };
 
-            openParkingBtn.onclick = showParking;
-            parkingOverlay.onclick = hideParking;
-            closeParkingX.onclick = hideParking;
-            closeParkingOk.onclick = hideParking;
+            openParkingBtn.addEventListener('click', showParking);
+            parkingOverlay.addEventListener('click', hideParking);
+            closeParkingX.addEventListener('click', hideParking);
+            closeParkingOk.addEventListener('click', hideParking);
         }
 
-        document.getElementById('save-calendar-hero').onclick = () => {
+        document.getElementById('save-calendar-hero').addEventListener('click', (e) => {
+            e.preventDefault();
             const ua = navigator.userAgent.toLowerCase();
             if (ua.indexOf('kakaotalk') > -1) {
                 location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(location.href);
@@ -660,7 +656,6 @@
                 showToast('Safari나 Chrome으로 열어주세요.');
                 return;
             }
-
             const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'BEGIN:VEVENT', 'DTSTART:20260627T120000', 'DTEND:20260627T150000', 'SUMMARY:황세웅 & 허세정 Wedding Celebration', 'LOCATION:모나코 스페이스', 'END:VEVENT', 'END:VCALENDAR'].join('\n');
             const blob = new Blob([ics], { type: 'text/calendar' });
             const url = URL.createObjectURL(blob);
@@ -670,7 +665,7 @@
             a.click();
             document.body.removeChild(a);
             setTimeout(() => URL.revokeObjectURL(url), 100);
-        };
+        });
 
         window.addEventListener('resize', initCanvas);
     </script>
