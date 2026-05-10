@@ -394,22 +394,78 @@
                     <span class="eng text-[12px] tracking-[0.4em] text-gray-500 mb-8 block uppercase font-bold">Registry</span>
                     <h3 class="text-2xl bm-font">마음을 전하실 곳</h3>
                 </div>
-                <div class="space-y-6">
-                    <div class="glass-panel p-10 flex flex-col sm:flex-row justify-between items-center gap-6">
-                        <div class="text-center sm:text-left">
-                            <p class="eng text-[11px] text-gray-500 mb-2 uppercase tracking-widest font-bold">Groom Side</p>
-                            <p class="text-lg font-bold text-gray-900">토스뱅크 1000-3101-7029</p>
-                            <p class="text-base text-gray-600 font-medium mt-1">예금주: 황세웅</p>
+                
+                <div class="space-y-12">
+                    <!-- Groom Side Group -->
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="h-[1px] bg-gray-200 flex-1"></div>
+                            <span class="eng text-[11px] text-gray-400 uppercase tracking-widest font-bold">Groom Side</span>
+                            <div class="h-[1px] bg-gray-200 flex-1"></div>
                         </div>
-                        <button onclick="copyText('1000-3101-7029')" class="eng text-sm text-blue-600 font-bold border-b-2 border-blue-600 pb-1 relative z-10">COPY</button>
+                        
+                        <!-- Groom Dad -->
+                        <div class="glass-panel p-6 flex justify-between items-center gap-4">
+                            <div class="text-left">
+                                <p class="text-sm text-gray-500 mb-1 font-bold">부 황종범</p>
+                                <p class="text-base font-bold text-gray-900">국민은행 860602-04-040585</p>
+                            </div>
+                            <button onclick="copyText('860602-04-040585')" class="eng text-xs text-blue-600 font-bold border-b border-blue-600 pb-0.5 relative z-10">COPY</button>
+                        </div>
+                        
+                        <!-- Groom Mom -->
+                        <div class="glass-panel p-6 flex justify-between items-center gap-4">
+                            <div class="text-left">
+                                <p class="text-sm text-gray-500 mb-1 font-bold">모 김서경</p>
+                                <p class="text-base font-bold text-gray-900">우체국 300400-02-046611</p>
+                            </div>
+                            <button onclick="copyText('300400-02-046611')" class="eng text-xs text-blue-600 font-bold border-b border-blue-600 pb-0.5 relative z-10">COPY</button>
+                        </div>
+
+                        <!-- Groom Self -->
+                        <div class="glass-panel p-6 flex justify-between items-center gap-4 bg-blue-50/30">
+                            <div class="text-left">
+                                <p class="text-sm text-blue-600 mb-1 font-bold">신랑 황세웅</p>
+                                <p class="text-base font-bold text-gray-900">토스뱅크 1000-3101-7029</p>
+                            </div>
+                            <button onclick="copyText('1000-3101-7029')" class="eng text-xs text-blue-600 font-bold border-b border-blue-600 pb-0.5 relative z-10">COPY</button>
+                        </div>
                     </div>
-                    <div class="glass-panel p-10 flex flex-col sm:flex-row justify-between items-center gap-6">
-                        <div class="text-center sm:text-left">
-                            <p class="eng text-[11px] text-gray-500 mb-2 uppercase tracking-widest font-bold">Bride Side</p>
-                            <p class="text-lg font-bold text-gray-900">신한은행 110-223-140846</p>
-                            <p class="text-base text-gray-600 font-medium mt-1">예금주: 허세정</p>
+
+                    <!-- Bride Side Group -->
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="h-[1px] bg-gray-200 flex-1"></div>
+                            <span class="eng text-[11px] text-gray-400 uppercase tracking-widest font-bold">Bride Side</span>
+                            <div class="h-[1px] bg-gray-200 flex-1"></div>
                         </div>
-                        <button onclick="copyText('110-223-140846')" class="eng text-sm text-blue-600 font-bold border-b-2 border-blue-600 pb-1 relative z-10">COPY</button>
+
+                        <!-- Bride Dad -->
+                        <div class="glass-panel p-6 flex justify-between items-center gap-4">
+                            <div class="text-left">
+                                <p class="text-sm text-gray-500 mb-1 font-bold">부 허재구</p>
+                                <p class="text-base font-bold text-gray-900">우리은행 197-08-016962</p>
+                            </div>
+                            <button onclick="copyText('197-08-016962')" class="eng text-xs text-blue-600 font-bold border-b border-blue-600 pb-0.5 relative z-10">COPY</button>
+                        </div>
+
+                        <!-- Bride Mom -->
+                        <div class="glass-panel p-6 flex justify-between items-center gap-4">
+                            <div class="text-left">
+                                <p class="text-sm text-gray-500 mb-1 font-bold">모 홍수옥</p>
+                                <p class="text-base font-bold text-gray-900">농협 356-0720-5428-23</p>
+                            </div>
+                            <button onclick="copyText('356-0720-5428-23')" class="eng text-xs text-blue-600 font-bold border-b border-blue-600 pb-0.5 relative z-10">COPY</button>
+                        </div>
+
+                        <!-- Bride Self -->
+                        <div class="glass-panel p-6 flex justify-between items-center gap-4 bg-pink-50/30">
+                            <div class="text-left">
+                                <p class="text-sm text-red-500 mb-1 font-bold">신부 허세정</p>
+                                <p class="text-base font-bold text-gray-900">신한은행 110-223-140846</p>
+                            </div>
+                            <button onclick="copyText('110-223-140846')" class="eng text-xs text-blue-600 font-bold border-b border-blue-600 pb-0.5 relative z-10">COPY</button>
+                        </div>
                     </div>
                 </div>
             </div>
