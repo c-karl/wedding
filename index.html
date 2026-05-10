@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-    <!-- Swiper CSS & JS 추가 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&family=Noto+Serif+KR:wght@200;300;400;500&family=JetBrains+Mono:wght@100;200&family=Do+Hyeon&family=Jua&display=swap" rel="stylesheet">
@@ -140,6 +139,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
         }
         .primary-btn { background: var(--text-main); color: white; border-color: var(--text-main); }
         
@@ -257,7 +257,6 @@
                         오후 2시부터 5시 사이, 편안한 시간에 오셔서 저희의 이야기를 감상해 주세요.
                     </p>
                     
-                    <!-- 컨셉 설명용 영상 추가 -->
                     <div class="mb-10 rounded-xl overflow-hidden shadow-sm border border-gray-100">
                         <video src="./images/99.mp4" class="w-full h-auto object-cover" autoplay loop muted playsinline></video>
                     </div>
@@ -285,33 +284,22 @@
                 <div class="reveal min-w-0 w-full">
                     <div class="swiper mySwiper rounded-lg shadow-xl overflow-hidden glass-panel aspect-[3/4]">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="./images/1.jpg" alt="Gallery 1" class="w-full h-full object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./images/2.jpg" alt="Gallery 2" class="w-full h-full object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./images/3.jpg" alt="Gallery 3" class="w-full h-full object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./images/4.jpg" alt="Gallery 4" class="w-full h-full object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./images/5.jpg" alt="Gallery 5" class="w-full h-full object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./images/6.jpg" alt="Gallery 6" class="w-full h-full object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./images/7.jpg" alt="Gallery 7" class="w-full h-full object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./images/8.jpg" alt="Gallery 8" class="w-full h-full object-cover">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./images/9.jpg" alt="Gallery 9" class="w-full h-full object-cover">
-                            </div>
+                            <!-- 15장의 이미지 슬라이드 -->
+                            <div class="swiper-slide"><img src="./images/1.jpg" alt="Gallery 1" class="w-full h-full object-cover"></div>
+                            <div class="swiper-slide"><img src="./images/2.jpg" alt="Gallery 2" class="w-full h-full object-cover"></div>
+                            <div class="swiper-slide"><img src="./images/3.jpg" alt="Gallery 3" class="w-full h-full object-cover"></div>
+                            <div class="swiper-slide"><img src="./images/4.jpg" alt="Gallery 4" class="w-full h-full object-cover"></div>
+                            <div class="swiper-slide"><img src="./images/5.jpg" alt="Gallery 5" class="w-full h-full object-cover"></div>
+                            <div class="swiper-slide"><img src="./images/6.jpg" alt="Gallery 6" class="w-full h-full object-cover"></div>
+                            <div class="swiper-slide"><img src="./images/7.jpg" alt="Gallery 7" class="w-full h-full object-cover"></div>
+                            <div class="swiper-slide"><img src="./images/8.jpg" alt="Gallery 8" class="w-full h-full object-cover"></div>
+                            <div class="swiper-slide"><img src="./images/9.jpg" alt="Gallery 9" class="w-full h-full object-cover"></div>
+                            <div class="swiper-slide"><img src="./images/10.jpg" alt="Gallery 10" class="w-full h-full object-cover"></div>
+                            <div class="swiper-slide"><img src="./images/11.jpg" alt="Gallery 11" class="w-full h-full object-cover"></div>
+                            <div class="swiper-slide"><img src="./images/12.jpg" alt="Gallery 12" class="w-full h-full object-cover"></div>
+                            <div class="swiper-slide"><img src="./images/13.jpg" alt="Gallery 13" class="w-full h-full object-cover"></div>
+                            <div class="swiper-slide"><img src="./images/14.jpg" alt="Gallery 14" class="w-full h-full object-cover"></div>
+                            <div class="swiper-slide"><img src="./images/15.jpg" alt="Gallery 15" class="w-full h-full object-cover"></div>
                         </div>
                         <div class="swiper-pagination"></div>
                         <div class="swiper-button-next" style="color: white; transform: scale(0.7); opacity: 0.8;"></div>
@@ -343,7 +331,16 @@
             <div class="max-w-screen-md mx-auto text-center reveal">
                 <span class="eng text-[10px] tracking-[0.5em] text-gray-400 mb-8 block uppercase">Location</span>
                 <h3 class="text-2xl bm-font mb-4">모나코 스페이스</h3>
-                <p class="text-gray-500 text-xs md:text-sm mb-12 tracking-wider leading-relaxed break-keep">서울 서초구 서초대로 397 부띠크모나코 B1<br>강남역 9번 출구에서 200m (도보 3분)</p>
+                <p class="text-gray-500 text-xs md:text-sm mb-12 tracking-wider leading-relaxed break-keep">
+                    서울 서초구 서초대로 397 부띠크모나코 B1<br>
+                    강남역 9번 출구에서 200m (도보 3분)<br>
+                    주차: 모나코스페이스(부띠크모나코 빌딩) 지하주차장
+                </p>
+                
+                <div class="flex flex-col items-center gap-4 mb-12">
+                    <button id="open-parking-guide" class="pill-btn primary-btn h-10 px-10 text-sm relative z-10">주차안내</button>
+                </div>
+
                 <div class="h-80 w-full mb-12 overflow-hidden glass-panel relative" id="map-container">
                     <iframe src="https://www.google.com/maps?q=%EB%AA%A8%EB%82%98%EC%BD%94%20%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4%20%EC%84%9C%EC%9A%B8&z=16&output=embed" class="w-full h-full border-0" loading="lazy"></iframe>
                 </div>
@@ -355,7 +352,7 @@
             </div>
         </section>
 
-        <!-- RSVP Section (기존 영역 유지) -->
+        <!-- RSVP Section -->
         <section id="rsvp" class="py-32 px-6 border-t border-gray-100 bg-white/50 backdrop-blur-sm">
             <div class="max-w-md mx-auto text-center reveal glass-panel p-10">
                 <span class="eng text-[10px] tracking-[0.5em] text-gray-400 mb-8 block uppercase">RSVP</span>
@@ -402,7 +399,7 @@
         <p class="eng text-[9px] tracking-[0.6em] text-gray-300 uppercase font-light">Optimized & Curated by Sewoong & Sejeong</p>
     </footer>
 
-    <!-- RSVP 팝업 (스크롤 시 등장) -->
+    <!-- RSVP 팝업 -->
     <div id="rsvp-popup" class="fixed bottom-0 left-0 right-0 z-[9000] p-4 sm:p-6 transition-all duration-700 ease-out transform translate-y-[120%] opacity-0 pointer-events-none flex justify-center">
         <div class="glass-panel w-full max-w-sm p-8 relative pointer-events-auto shadow-2xl bg-white/95">
             <button id="close-rsvp-popup" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-800 transition-colors rounded-full hover:bg-gray-100">
@@ -422,18 +419,39 @@
         </div>
     </div>
 
+    <!-- 주차 안내 팝업 -->
+    <div id="parking-popup" class="hidden fixed inset-0 z-[9001] items-center justify-center p-6">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" id="parking-popup-overlay"></div>
+        <div class="glass-panel w-full max-w-[320px] p-8 relative shadow-2xl bg-white/98 transform border-gray-100 border">
+            <button id="close-parking-popup-btn-x" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-800 transition-colors rounded-full hover:bg-gray-100">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="text-center mt-2">
+                <span class="eng text-[10px] tracking-[0.4em] text-gray-400 mb-3 block uppercase font-bold">Parking Guide</span>
+                <h3 class="text-xl bm-font mb-6 text-blue-600">주차 상세 안내</h3>
+                <div class="text-left space-y-4 text-gray-600 font-light leading-relaxed break-keep text-xs">
+                    <p>
+                        지하주차장 1~5층 이용 가능하며, 지하 3~5층 주차 시 엘리베이터 앞 스크린에서 <span class="font-bold text-blue-600">'관리실 호출'</span> 후 "모나코스페이스 방문"이라 말씀해 주세요.
+                    </p>
+                    <div class="h-[1px] bg-gray-100 w-full"></div>
+                    <p>
+                        주차 정산은 돌아가실 때 입구 안내 데스크에 말씀해 주시면 처리해 드립니다.
+                    </p>
+                </div>
+                <button id="close-parking-popup-btn-ok" class="pill-btn primary-btn w-full text-sm h-11 mt-8">확인</button>
+            </div>
+        </div>
+    </div>
+
     <div id="copy-toast">계좌번호가 복사되었습니다.</div>
 
     <script>
-        // 새로고침 시 스크롤을 유지하려는 브라우저의 기본 동작 방지
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
 
-        // 시스템 로딩 완료 상태를 추적하는 변수 추가
         let systemReady = false;
 
-        // 1. Loading & Initialization
         window.onload = () => {
             window.scrollTo(0, 0); 
             
@@ -453,7 +471,7 @@
                         document.getElementById('loader').style.display = 'none';
                         initAnimations();
                         initSwiper();
-                        // 로딩 애니메이션이 완전히 끝난 후 팝업 동작을 허용합니다.
+                        initPopups();
                         systemReady = true;
                     }});
                 }
@@ -464,7 +482,6 @@
             updateCountdown();
         };
 
-        // 2. Neural Network Canvas
         const canvas = document.getElementById('neural-bg');
         const ctx = canvas.getContext('2d');
         let dots = [];
@@ -519,7 +536,6 @@
             requestAnimationFrame(drawCanvas);
         }
 
-        // 3. Countdown Optimization
         function updateCountdown() {
             const target = new Date('2026-06-27T14:00:00+09:00').getTime();
             const countdownEl = document.getElementById('countdown');
@@ -542,7 +558,6 @@
             tick();
         }
 
-        // 4. Utilities & Modern APIs
         function initAnimations() {
             gsap.registerPlugin(ScrollTrigger);
             gsap.utils.toArray('.reveal').forEach(el => {
@@ -555,18 +570,9 @@
                 new Swiper(".mySwiper", {
                     loop: true,
                     spaceBetween: 10,
-                    pagination: {
-                        el: ".swiper-pagination",
-                        clickable: true,
-                    },
-                    navigation: {
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev",
-                    },
-                    autoplay: {
-                        delay: 3500,
-                        disableOnInteraction: false,
-                    }
+                    pagination: { el: ".swiper-pagination", clickable: true },
+                    navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+                    autoplay: { delay: 3500, disableOnInteraction: false }
                 });
             }
         }
@@ -595,18 +601,64 @@
             setTimeout(() => toast.classList.remove('show'), 2000);
         }
 
+        function initPopups() {
+            // RSVP Popup
+            const rsvpPopup = document.getElementById('rsvp-popup');
+            const closeRsvpPopupBtn = document.getElementById('close-rsvp-popup');
+            let rsvpShown = false;
+            let rsvpClosed = false;
+
+            window.addEventListener('scroll', () => {
+                if (rsvpClosed || !systemReady) return;
+                if (window.scrollY > window.innerHeight * 0.8) {
+                    if (!rsvpShown) {
+                        rsvpPopup.classList.remove('translate-y-[120%]', 'opacity-0');
+                        rsvpPopup.classList.add('translate-y-0', 'opacity-100');
+                        rsvpShown = true;
+                    }
+                }
+            }, { passive: true });
+
+            closeRsvpPopupBtn.addEventListener('click', () => {
+                rsvpPopup.classList.remove('translate-y-0', 'opacity-100');
+                rsvpPopup.classList.add('translate-y-[120%]', 'opacity-0');
+                rsvpClosed = true;
+            });
+
+            // Parking Popup
+            const parkingPopup = document.getElementById('parking-popup');
+            const openParkingBtn = document.getElementById('open-parking-guide');
+            const parkingOverlay = document.getElementById('parking-popup-overlay');
+            const closeParkingX = document.getElementById('close-parking-popup-btn-x');
+            const closeParkingOk = document.getElementById('close-parking-popup-btn-ok');
+
+            const showParking = (e) => {
+                if(e) e.preventDefault();
+                parkingPopup.style.display = 'flex';
+                gsap.fromTo(parkingPopup.querySelector('.glass-panel'), { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4 });
+            };
+
+            const hideParking = (e) => {
+                if(e) e.preventDefault();
+                gsap.to(parkingPopup.querySelector('.glass-panel'), { scale: 0.9, opacity: 0, duration: 0.3, onComplete: () => {
+                    parkingPopup.style.display = 'none';
+                }});
+            };
+
+            openParkingBtn.addEventListener('click', showParking);
+            parkingOverlay.addEventListener('click', hideParking);
+            closeParkingX.addEventListener('click', hideParking);
+            closeParkingOk.addEventListener('click', hideParking);
+        }
+
         document.getElementById('save-calendar-hero').onclick = () => {
             const ua = navigator.userAgent.toLowerCase();
-            
-            // 카카오톡 브라우저에서 클릭 시 외부 기본 브라우저(Safari/Chrome)로 강제 실행 유도
             if (ua.indexOf('kakaotalk') > -1) {
                 location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(location.href);
                 return;
             }
-            
-            // 인스타그램, 라인 등 다른 인앱 브라우저 체크 및 안내 토스트 표시
             if (ua.indexOf('instagram') > -1 || ua.indexOf('line') > -1) {
-                showToast('현재 화면에서는 저장이 제한됩니다. 우측 상단 메뉴에서 Safari나 Chrome으로 열어주세요.');
+                showToast('Safari나 Chrome으로 열어주세요.');
                 return;
             }
 
@@ -621,31 +673,6 @@
             document.body.removeChild(a);
             setTimeout(() => URL.revokeObjectURL(url), 100);
         };
-
-        // 5. RSVP 팝업 로직
-        const rsvpPopup = document.getElementById('rsvp-popup');
-        const closeRsvpPopupBtn = document.getElementById('close-rsvp-popup');
-        let popupShown = false;
-        let popupClosed = false;
-
-        window.addEventListener('scroll', () => {
-            // 로딩이 완전히 끝나기 전이거나 팝업을 이미 닫았으면 실행하지 않음
-            if (popupClosed || !systemReady) return;
-            
-            if (window.scrollY > window.innerHeight * 0.8) {
-                if (!popupShown) {
-                    rsvpPopup.classList.remove('translate-y-[120%]', 'opacity-0');
-                    rsvpPopup.classList.add('translate-y-0', 'opacity-100');
-                    popupShown = true;
-                }
-            }
-        }, { passive: true });
-
-        closeRsvpPopupBtn.addEventListener('click', () => {
-            rsvpPopup.classList.remove('translate-y-0', 'opacity-100');
-            rsvpPopup.classList.add('translate-y-[120%]', 'opacity-0');
-            popupClosed = true;
-        });
 
         window.addEventListener('resize', initCanvas);
     </script>
