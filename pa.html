@@ -19,7 +19,7 @@
             --bg: #ffffff;
             --calendar-accent: #0047FF;
             --glass: rgba(255, 255, 255, 0.9);
-            --parking-yellow: #FFD400; /* 어르신들이 인지하기 가장 좋은 노란색 톤 */
+            --parking-yellow: #FFD400;
         }
 
         * { box-sizing: border-box; }
@@ -144,7 +144,6 @@
         }
         .primary-btn { background: var(--text-main); color: white; border-color: var(--text-main); }
         
-        /* 강조용 노란색 버튼 스타일 */
         .parking-btn {
             background-color: var(--parking-yellow);
             color: #000;
@@ -346,7 +345,6 @@
                     서울 서초구 서초대로 397 부띠크모나코 B1<br>
                     <span class="text-blue-600 font-bold underline underline-offset-4">강남역 9번 출구에서 200m (도보 3분)</span>
                 </p>
-                <!-- 주차 정보 추가 -->
                 <div class="flex flex-col items-center gap-4 mb-12">
                     <p class="text-gray-900 font-bold text-lg break-keep">주차: 모나코스페이스(부띠크모나코 빌딩) 지하주차장</p>
                     <button id="open-parking-guide" class="pill-btn h-10 px-10 text-sm parking-btn">주차안내</button>
@@ -365,7 +363,7 @@
 
         <!-- RSVP Section -->
         <section id="rsvp" class="py-32 px-6 border-t border-gray-100 bg-white/60 backdrop-blur-md">
-            <div class="max-w-md mx-auto text-center reveal glass-panel p-12">
+            <div class="max-w-md mx-auto text-center reveal glass-panel p-8 sm:p-12">
                 <span class="eng text-[12px] tracking-[0.4em] text-gray-500 mb-8 block uppercase font-bold">RSVP</span>
                 <h3 class="text-3xl bm-font mb-8">참석 여부 전달</h3>
                 <p class="text-gray-800 text-lg mb-12 leading-relaxed font-medium break-keep">
@@ -411,20 +409,20 @@
         <p class="eng text-[11px] tracking-[0.4em] text-gray-400 uppercase font-medium">Optimized & Curated by Sewoong & Sejeong</p>
     </footer>
 
-    <!-- RSVP 팝업 -->
-    <div id="rsvp-popup" class="fixed bottom-0 left-0 right-0 z-[9000] p-4 sm:p-8 transition-all duration-700 ease-out transform translate-y-[120%] opacity-0 pointer-events-none flex justify-center">
-        <div class="glass-panel w-full max-w-sm p-10 relative pointer-events-auto shadow-2xl bg-white/98">
-            <button id="close-rsvp-popup" class="absolute top-5 right-5 p-3 text-gray-400 hover:text-gray-800 transition-colors rounded-full hover:bg-gray-100">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    <!-- RSVP 팝업 (크기 축소 및 너비 제한) -->
+    <div id="rsvp-popup" class="fixed bottom-0 left-0 right-0 z-[9000] p-4 sm:p-6 transition-all duration-700 ease-out transform translate-y-[120%] opacity-0 pointer-events-none flex justify-center">
+        <div class="glass-panel w-full max-w-xs p-6 sm:p-8 relative pointer-events-auto shadow-2xl bg-white/98">
+            <button id="close-rsvp-popup" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-800 transition-colors rounded-full hover:bg-gray-100">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            <div class="text-center mt-4">
-                <span class="eng text-[11px] tracking-[0.4em] text-gray-500 mb-4 block uppercase font-bold">RSVP</span>
-                <h3 class="text-2xl bm-font mb-6">참석 여부 전달</h3>
-                <p class="text-gray-700 text-base mb-8 leading-relaxed font-medium break-keep">
-                    축하를 위해 걸음해주시는 귀한 발걸음 잊지 않겠습니다.<br>
+            <div class="text-center mt-2">
+                <span class="eng text-[11px] tracking-[0.4em] text-gray-500 mb-3 block uppercase font-bold">RSVP</span>
+                <h3 class="text-xl bm-font mb-4 font-bold">참석 여부 전달</h3>
+                <p class="text-gray-700 text-sm mb-6 leading-relaxed font-medium break-keep">
+                    축하를 위해 걸음해주시는<br>귀한 발걸음 잊지 않겠습니다.<br>
                     참석 여부를 알려주시면 정성껏 모시겠습니다.
                 </p>
-                <a href="https://forms.gle/eMboqAp4i9Rjdm5FA" target="_blank" class="pill-btn primary-btn w-full text-lg h-14">
+                <a href="https://forms.gle/eMboqAp4i9Rjdm5FA" target="_blank" class="pill-btn primary-btn w-full text-base h-12">
                     참석 의사 전달하기
                 </a>
             </div>
@@ -434,14 +432,14 @@
     <!-- 주차 안내 팝업 -->
     <div id="parking-popup" class="fixed inset-0 z-[9001] p-4 sm:p-8 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500 ease-out">
         <div class="absolute inset-0 bg-black/20 backdrop-blur-sm" id="parking-popup-overlay"></div>
-        <div class="glass-panel w-full max-w-md p-10 relative pointer-events-auto shadow-2xl bg-white/98 transform scale-95 transition-transform duration-500">
-            <button id="close-parking-popup" class="absolute top-5 right-5 p-3 text-gray-400 hover:text-gray-800 transition-colors rounded-full hover:bg-gray-100">
+        <div class="glass-panel w-full max-w-md p-8 sm:p-10 relative pointer-events-auto shadow-2xl bg-white/98 transform scale-95 transition-transform duration-500">
+            <button id="close-parking-popup-btn-x" class="absolute top-5 right-5 p-3 text-gray-400 hover:text-gray-800 transition-colors rounded-full hover:bg-gray-100">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             <div class="text-center mt-4">
                 <span class="eng text-[11px] tracking-[0.4em] text-gray-500 mb-4 block uppercase font-bold">Parking Guide</span>
                 <h3 class="text-2xl bm-font mb-8 text-blue-600">주차 상세 안내</h3>
-                <div class="text-left space-y-6 text-gray-800 font-medium leading-relaxed break-keep text-base md:text-lg">
+                <div class="text-left space-y-6 text-gray-800 font-medium leading-relaxed break-keep text-base">
                     <p>
                         지하주차장 1~5층 모두 이용 가능하며, 지하 3~5층 주차 시, 엘리베이터 앞 스크린에서 <span class="font-bold text-blue-600">'관리실 호출'</span> 후 "모나코스페이스 방문"이라 말씀해 주세요.
                     </p>
@@ -450,7 +448,7 @@
                         주차 정산은 돌아가실 때 축의대에 말씀해 주시면 처리해 드립니다.
                     </p>
                 </div>
-                <button id="close-parking-popup-btn" class="pill-btn primary-btn w-full text-lg h-14 mt-10">확인</button>
+                <button id="close-parking-popup-btn-ok" class="pill-btn primary-btn w-full text-lg h-14 mt-10">확인</button>
             </div>
         </div>
     </div>
@@ -484,6 +482,7 @@
                         initAnimations();
                         initSwiper();
                         systemReady = true;
+                        initPopups(); // 로딩 후 팝업 초기화
                     }});
                 }
             }, 250);
@@ -491,7 +490,6 @@
             initCanvas();
             drawCanvas();
             updateCountdown();
-            initPopups();
         };
 
         const canvas = document.getElementById('neural-bg');
@@ -602,54 +600,54 @@
         }
 
         function initPopups() {
-            // RSVP Popup Logic
             const rsvpPopup = document.getElementById('rsvp-popup');
             const closeRsvpPopupBtn = document.getElementById('close-rsvp-popup');
             let popupShown = false;
             let popupClosed = false;
 
+            // RSVP 팝업 표시 로직
             window.addEventListener('scroll', () => {
                 if (popupClosed || !systemReady) return;
                 if (window.scrollY > window.innerHeight * 0.8) {
                     if (!popupShown) {
-                        rsvpPopup.classList.remove('translate-y-[120%]', 'opacity-0');
-                        rsvpPopup.classList.add('translate-y-0', 'opacity-100');
+                        rsvpPopup.classList.remove('translate-y-[120%]', 'opacity-0', 'pointer-events-none');
+                        rsvpPopup.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
                         popupShown = true;
                     }
                 }
             }, { passive: true });
 
-            closeRsvpPopupBtn.addEventListener('click', () => {
-                rsvpPopup.classList.remove('translate-y-0', 'opacity-100');
-                rsvpPopup.classList.add('translate-y-[120%]', 'opacity-0');
+            closeRsvpPopupBtn.onclick = () => {
+                rsvpPopup.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+                rsvpPopup.classList.add('translate-y-[120%]', 'opacity-0', 'pointer-events-none');
                 popupClosed = true;
-            });
-
-            // Parking Guide Popup Logic
-            const parkingPopup = document.getElementById('parking-popup');
-            const openParkingBtn = document.getElementById('open-parking-guide');
-            const closeParkingBtns = [
-                document.getElementById('close-parking-popup'),
-                document.getElementById('close-parking-popup-btn'),
-                document.getElementById('parking-popup-overlay')
-            ];
-
-            const toggleParkingPopup = (show) => {
-                if (show) {
-                    parkingPopup.classList.remove('opacity-0', 'pointer-events-none');
-                    parkingPopup.classList.add('opacity-100', 'pointer-events-auto');
-                    parkingPopup.querySelector('.glass-panel').classList.remove('scale-95');
-                    parkingPopup.querySelector('.glass-panel').classList.add('scale-100');
-                } else {
-                    parkingPopup.classList.remove('opacity-100', 'pointer-events-auto');
-                    parkingPopup.classList.add('opacity-0', 'pointer-events-none');
-                    parkingPopup.querySelector('.glass-panel').classList.remove('scale-100');
-                    parkingPopup.querySelector('.glass-panel').classList.add('scale-95');
-                }
             };
 
-            openParkingBtn.addEventListener('click', () => toggleParkingPopup(true));
-            closeParkingBtns.forEach(btn => btn.addEventListener('click', () => toggleParkingPopup(false)));
+            // 주차 안내 팝업 로직
+            const parkingPopup = document.getElementById('parking-popup');
+            const openParkingBtn = document.getElementById('open-parking-guide');
+            const parkingOverlay = document.getElementById('parking-popup-overlay');
+            const closeParkingX = document.getElementById('close-parking-popup-btn-x');
+            const closeParkingOk = document.getElementById('close-parking-popup-btn-ok');
+
+            const showParking = () => {
+                parkingPopup.classList.remove('opacity-0', 'pointer-events-none');
+                parkingPopup.classList.add('opacity-100', 'pointer-events-auto');
+                parkingPopup.querySelector('.glass-panel').classList.remove('scale-95');
+                parkingPopup.querySelector('.glass-panel').classList.add('scale-100');
+            };
+
+            const hideParking = () => {
+                parkingPopup.classList.remove('opacity-100', 'pointer-events-auto');
+                parkingPopup.classList.add('opacity-0', 'pointer-events-none');
+                parkingPopup.querySelector('.glass-panel').classList.remove('scale-100');
+                parkingPopup.querySelector('.glass-panel').classList.add('scale-95');
+            };
+
+            openParkingBtn.onclick = showParking;
+            parkingOverlay.onclick = hideParking;
+            closeParkingX.onclick = hideParking;
+            closeParkingOk.onclick = hideParking;
         }
 
         document.getElementById('save-calendar-hero').onclick = () => {
